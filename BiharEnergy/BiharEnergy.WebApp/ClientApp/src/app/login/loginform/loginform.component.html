@@ -1,0 +1,55 @@
+<br /><br />
+
+<!-- navigator.onLine{{onlineFlag}} -->
+
+<br /><br />
+<div class="col-md-4"></div>
+<div class="col-md-4">
+    <div class="panel panel-default">
+        <div class='gst_logo_bar'>
+            <img src="assets/logo.png" class="gst_logo" />
+        </div>
+        <br />
+        
+        <form class="form-group">
+           
+            <div class="row">
+               
+                <div class="col-md-2">
+                </div>
+                <div class=" col-md-8">
+                    <label for="username">User Name</label>
+                    <input id="username" type="text" placeholder="Username" class="form-control" id="user_name" #userName >
+                </div>
+                <div class="col-md-2">
+                </div>
+            </div>
+            <br />
+            <div class="row">
+
+                <div class="col-md-2 ">
+                </div>
+                <div class="col-md-8">
+                    <label for="password">Password</label>
+                    <input id="password" type="password" placeholder="Password" class="form-control" id="pwd" #pwd >
+                </div>
+                <div class="col-md-2">
+                </div>
+            </div>
+
+
+            
+            <div class="row">
+                <div  style="position: center"></div>
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <button type="button" (click)="doLogin(userName.value,pwd.value)" class="btn-primary button1"   >Login </button> 
+                    <div class="col-md-3"></div>
+                </div>
+            </div>
+        
+        </form>
+    </div>
+</div>
+
+<div class="col-md-4"></div>

@@ -1,0 +1,132 @@
+
+<p-growl>[(value)]="msgs"></p-growl>
+
+
+<form [formGroup]="supplierForm" (ngSubmit)="saveSupplier()">
+
+  <p-dialog header="{{pageTitle}}" 
+          [(visible)]="displayDialog" 
+          [responsive]="true" 
+          showEffect="fade" 
+          [modal]="true" 
+          [closable]="true" 
+          (onHide) = "this.closeDialog.emit(null)"
+          [width]="500" >
+
+  <div class="ui-g">
+    
+
+
+      <div class="ui-g-4">
+     <label style="margin-top:5px;" for="name" autofocus>Name</label>
+    </div>
+      <div class="ui-g-8">
+        <input pInputText type="name" id="name" formControlName="name" style="width:160px">
+        <div class="ui-message ui-messages-error ui-corner-all" *ngIf="supplierForm.get('name').touched && supplierForm.get('name').invalid" style="width:160px">
+          <div class="ui-message ui-messages-error ui-corner-all" *ngIf="supplierForm.get('name').hasError('required')">
+            <i class="fa fa-fw fa-close"></i>
+            Supplier Name is required
+          </div>
+          <div class="ui-message ui-messages-error ui-corner-all" *ngIf="supplierForm.get('name').hasError('minlength')">
+            <i class="fa fa-fw fa-close"></i>
+            Invalid Supplier Name
+          </div>
+        </div>
+      </div>
+
+
+      <div class="ui-g-4">
+      <label style="margin-top:5px;" for="registrationType">Registration Type</label>
+      </div>
+      <div class="ui-g-8">
+          <p-dropdown [options]="registrationType"  formControlName="registrationType"  placeholder="Select"  [style]="{'width':'160px'}" filter="true" (onChange) ="checkRegistrationType()">
+              <ng-template let-option pTemplate="item">
+                <div translate>{{option.label}}</div>
+              </ng-template>
+            </p-dropdown>
+      </div> 
+
+      
+      <div class="ui-g-4" *ngIf="supplierForm.get('registrationType').value!='1'">
+          <label style="margin-top:5px;" for="gstIn" >GSTIN</label>
+      </div>
+      <div class="ui-g-8" *ngIf="supplierForm.get('registrationType').value!='1'">
+          <input pInputText type="text"  id="gstIn" formControlName="gstin" style="width:160px">
+          <div class="ui-message ui-messages-error ui-corner-all" *ngIf="supplierForm.get('gstin').touched && supplierForm.get('gstin').invalid" style="width:160px">
+            <div class="ui-message ui-messages-error ui-corner-all" *ngIf="supplierForm.get('gstin').hasError('required')">
+              <i class="fa fa-fw fa-close"></i>
+              Gstin is required
+            </div>
+            <div class="ui-message ui-messages-error ui-corner-all" *ngIf="supplierForm.get('gstin').hasError('pattern')">
+              <i class="fa fa-fw fa-close"></i>
+              Invalid Gstin
+            </div>
+          </div>
+      </div>
+    
+      
+
+      <div class="ui-g-4">
+      <label style="margin-top:5px;" for="address">Address</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText type="text" id="address" formControlName="address" style="width:160px">
+         <div class="ui-message ui-messages-error ui-corner-all" *ngIf="supplierForm.get('address').touched && supplierForm.get('address').invalid" style="width:160px">
+          <div class="ui-message ui-messages-error ui-corner-all" *ngIf="supplierForm.get('address').hasError('required')">
+            <i class="fa fa-fw fa-close"></i>
+             Address is required
+          </div>
+          <div class="ui-message ui-messages-error ui-corner-all" *ngIf="supplierForm.get('address').hasError('minlength')">
+            <i class="fa fa-fw fa-close"></i>
+            Invalid Address
+          </div>
+        </div>
+        </div>
+
+        <div class="ui-g-4">
+         <label style="margin-top:5px;" for="state">State</label>
+       </div>
+       <div class="ui-g-8">
+
+        <p-dropdown [options]="stateList"  formControlName="state" placeholder="Select A State"  [style]="{'width':'160px'}" filter="true">
+          <ng-template let-option pTemplate="item">
+            <div translate>{{option.label}}</div>
+          </ng-template>
+        </p-dropdown>
+        <div class="ui-message ui-messages-error ui-corner-all" *ngIf="supplierForm.get('state').touched && supplierForm.get('state').hasError('required')" style="width:160px">
+          <i class="fa fa-fw fa-close"></i>
+          Field is required*
+        </div>
+        </div>
+  
+
+
+
+
+
+      <div class="ui-g-4">
+      <label style="margin-top:5px;"  for="contact">Contact Number</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText type="text"  id="contact" formControlName="contactNumber" style="width:160px" onlyNumber>
+      </div>
+
+      <div class="ui-g-4">
+        <label style="margin-top:5px;"  for="email">Email</label>
+        </div>
+        <div class="ui-g-8">
+          <input pInputText type="text"  id="email" formControlName="email" style="width:160px">
+        </div>
+
+    </div>
+  <!-- <pre>{{supplierForm.value | json}} </pre>  -->
+  <p-footer>
+    <div class="ui-dialog-buttonpane ui-helper-clearfix">
+        <button type="button" pButton icon="fa fa-fw fa-check" (onclick)="disable()" (click)="saveSupplier()" [disabled]="supplierForm.invalid" label="Save"></button>
+    </div>
+</p-footer>
+
+</p-dialog>
+</form>
+
+

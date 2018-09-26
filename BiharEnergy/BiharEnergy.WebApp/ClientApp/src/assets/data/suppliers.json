@@ -1,0 +1,34 @@
+[
+{
+    "id": 1,
+    "supplierOpeningDate": "23/07/1996",
+    "name": "Akash Agarwal",
+    "gstin": "A45SA2AS25ASA2",
+    "address": "Nala Road",
+    "state": "Bihar",
+    "contactNumber": 7004526875,
+    "registrationType": "Unregistered",
+    "openBalance": "10000"
+},
+{
+    "id": 2,
+    "supplierOpeningDate": "23/07/1996",
+    "name": "Navneet Kumar",
+    "gstin": "SAVD2D2R5T5ASA2",
+    "address": "Income Tax Chauraha",
+    "state": "Bihar",
+    "contactNumber": 7856988587,
+    "registrationType": "Registered",
+    "openBalance": "10000"
+},
+{
+    "id": 3,
+    "supplierOpeningDate": "23/07/1996",
+    "name": "Vishal Rathore",
+    "gstin": "A45SA2AS25ASA2",
+    "address": "KankarBagh",
+    "state": "Bihar",
+    "contactNumber": 7979036375,
+    "registrationType": "Registered",
+    "openBalance": "10000"
+}]

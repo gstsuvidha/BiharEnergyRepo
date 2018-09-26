@@ -1,0 +1,129 @@
+﻿<p-table [value]="invoiceItems">
+    <ng-template pTemplate="header">
+    <tr pResizableColumn>
+        <th style="width:5%">S.No</th>
+        <th style="width:12%">Item</th>
+       <th style="width:12%">Quantity</th>
+        <th style="width:12%">Rate</th>
+        <th style="width:10%">Discount </th>
+        <th style="width:12%">Taxable Value</th>
+        <th style="width:12%">Tax Amount</th>
+        <th style="width:11%">Cess</th>
+        <th style="width:11%">Total</th>
+    </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-item let-rowIndex="rowIndex">
+      <tr class="ui-resizable-column">
+        <td>{{rowIndex+1}}</td>
+        <td>{{getProductName(item.productId)}}</td>
+        <td>{{item.quantity}}</td>
+        <td>{{item.unitPrice}}</td>
+        <td>{{item.discount}}</td>
+        <td>{{item.taxableValue | number: '1.2-2'}}</td>
+        <td>{{item.taxAmount | number: '1.2-2'}}</td> 
+        <td>{{item.cess | number: '1.2-2'}}</td> 
+        <td>{{item.total | number: '1.2-2'}}</td>
+        <td><button pButton type="button" icon="fa fa-fw fa-trash" (click)="removeLine(rowIndex)"></button></td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="footer">
+      <tr>
+      <td></td>
+      <td>
+          <p-dropdown [options]="productSelectList" placeholder="Select A Product"
+          [style]="{'width':'100%'}" filter="true" (onChange)="getUnitPrice(pId,unitPrice)" #pId>
+          <ng-template let-option pTemplate="item">
+          <div translate>{{option.label}}</div>
+          </ng-template>
+          </p-dropdown>
+      </td>
+      <td>
+        <input pInputText id="quantity" placeholder="quantity" style="width:100%" (change)="checkQuantity(pId,qty)" onlyNumber #qty>
+      </td>
+      <td>
+          <input pInputText id="rate" placeholder="unitPrice" style="width:100%" onlyNumber #unitPrice>
+      </td>
+      <td>
+          <input pInputText id="discount" placeholder="Discount %" style="width:100%" onlyNumber #dis>
+      </td>
+      <td>
+        <button pButton type="button" (click)="addProductLine(pId,qty,unitPrice,dis)" icon="fa fa-fw fa-plus"></button>
+      </td>
+    </tr>
+    </ng-template>
+
+</p-table>
+
+
+
+
+
+
+
+
+
+
+
+<!-- <table class=" table table-striped table-hover  table-bordered table-condensed">    
+  <thead class="row">
+     <tr style="width:100px"><th style="width:5%">S.No</th>
+  <th style="width:12%">Item</th>
+ <th style="width:12%">Quantity</th>
+  <th style="width:12%">Rate</th>
+  <th style="width:10%">Discount </th>
+  <th style="width:12%">Taxable Value</th>
+  <th style="width:12%">Tax Amount</th>
+  <th style="width:11%">Cess</th>
+  <th style="width:12%">Total</th>
+  
+  
+
+  </tr>
+  </thead>
+
+<tbody>
+<tr *ngFor="let item of invoiceItems;let i=index">
+<td>{{i+1}}</td>
+ <td>{{getProductName(item.productId)}}</td>
+  <td>{{item.quantity}}</td>
+  <td>{{item.unitPrice}}</td>
+   <td>{{item.discount}}</td>
+   <td>{{item.taxableValue | number: '1.2-2'}}</td>
+   <td>{{item.taxAmount | number: '1.2-2'}}</td> 
+   <td>{{item.cess | number: '1.2-2'}}</td> 
+   <td>{{item.total | number: '1.2-2'}}</td> 
+<td>
+
+     <button type="button" class="btn btn-link btn-sm" (click)="removeLine(i)">  
+
+      <span class="glyphicon glyphicon-trash"></span>
+     </button> </td>
+  </tr>
+    <tr>
+      <td></td>
+      <td> 
+          <select class="form-control" (change)="getUnitPriceAndCheckStockOfProduct(pId, unitPrice)" #pId>
+    <option value="null">Select Product</option>
+         
+    <option *ngFor="let item of productSelectList" value="{{item.id}}" >{{item.name}}</option>
+  </select>
+
+
+</td>
+      <td> <input type="text" class="form-control" id="quantity" placeholder="quantity" (change)="checkQuantity(pId,qty)" onlyNumber #qty ></td>
+      <td> <input type="text" class="form-control" id="rate" placeholder="Unit Price" onlyNumber #unitPrice></td>
+      <td> <input type="text" class="form-control" id="discount" placeholder="Discount %" onlyNumber #dis></td>
+       
+      <td colspan="4"><button type="button" class="btn btn-link btn-sm" (click)="addProductLine(pId,qty,unitPrice,dis)" >  
+
+      <span class="glyphicon glyphicon-plus"></span> Add
+     </button>
+</td>
+      
+    </tr>
+</tbody>
+
+
+
+
+</table> -->

@@ -1,0 +1,23 @@
+[
+    {
+        "id" : 1,
+        "name" : "BSPHCL"
+    },
+    {
+        "id" : 2,
+        "name" : "BSPGCL"
+    },
+    {
+        "id" : 3,
+        "name" : "BSPTCL" 
+    },
+    {
+        "id" : 4,
+        "name" : "NBPDCL"
+    },
+    {
+        "id" : 5,
+        "name" : "SBPDCL"
+    }
+    
+]

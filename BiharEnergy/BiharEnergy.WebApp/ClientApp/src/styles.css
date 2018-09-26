@@ -1,0 +1,53 @@
+/* You can add global styles to this file, and also import other style files */
+@media (max-width: 767px) {
+    /* On small screens, the nav menu spans the full width of the screen. Leave a space for it. */
+    .body-content {
+        padding-top: 50px;
+    }
+}
+
+
+
+
+body{
+    padding-top: 32px;
+     font-size:13px;
+}
+
+label{
+    font-size : 14px;
+}
+
+ul {
+    list-style-type: none;
+}
+/* body{
+    font-size: 15px;
+    
+} */
+table, th, td {
+    border: 1px solid gainsboro;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+.ui-table-thead{
+    font-size: 12px;
+}
+.ui-fieldset{
+    background-color: #fafafa;
+}
+.ui-card{
+    background-color: #fafafa;
+}
+h4{
+    font-size: 11px;
+}
+.table2{
+  width: 100%;
+}
+:host ::ng-deep .ui-message .ui-messages-error{
+  background: pink;
+}

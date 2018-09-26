@@ -1,0 +1,123 @@
+
+<p-growl>[(value)]="msgs"></p-growl>
+
+
+  
+    
+  
+  
+      
+  
+    
+<form [formGroup]="tdsForm" (ngSubmit)="saveTds()">
+
+  <p-dialog header="{{pageTitle}}" 
+          [(visible)]="displayDialog" 
+          [responsive]="true" 
+          showEffect="fade" 
+          [modal]="true" 
+          [closable]="true" 
+          (onHide) = "this.closeDialog.emit(null)"
+          [width]="500" >
+    <div class="ui-g">
+      
+
+
+        <div class="ui-g-5">
+       <label style="margin-top:5px;" for="name" autofocus>Name</label>
+      </div>
+        <div class="ui-g-7">
+          <p-dropdown [options]="supplierSelectList"  formControlName="supplierId" placeholder="Select" [style]="{'width':'160px'}" filter="true" (onChange)="checkSupplyType($event)">
+            <ng-template let-option pTemplate="item">
+              <div translate>{{option.label}}</div>
+            </ng-template>
+          </p-dropdown>
+                </div>
+
+     
+                <div class="ui-g-5">
+                <label for="date"> Date</label>
+                <br />
+                </div>
+                <div class="ui-g-7">
+                <p-calendar formControlName="date" [monthNavigator]="true" [yearNavigator]="true" dateFormat="dd/mm/yy" yearRange="2000:2030"></p-calendar>
+              </div>
+          
+        
+
+
+
+        
+
+        
+
+          <div class="ui-g-5">
+           <label style="margin-top:5px;" for="placeOfSupply">Place Of Supply</label>
+         </div>
+         <div class="ui-g-7">
+
+          <p-dropdown [options]="stateList"  formControlName="placeOfSupply" placeholder="Select A State"  [style]="{'width':'160px'}" filter="true" 
+          (onChange)="checkSupplyType($event)">
+            <ng-template let-option pTemplate="item">
+              <div translate>{{option.label}}</div>
+            </ng-template>
+          </p-dropdown>
+          </div>
+ 
+          <div class="ui-g-5">
+            <label style="margin-top:5px;"  for="amountPaid">Amount Paid <br>(Exclusive Of GST)</label>
+            </div>
+            <div class="ui-g-7">
+              <input pInputText type="text"  id="amountPaid" formControlName="amountPaid" style="width:160px" onlyNumber="true" >
+    </div>
+    
+ <div class="ui-g-5">
+        <label style="margin-top:5px;"  *ngIf="isIntraState"for="cgstAmount">CGST@1%</label>
+        </div>
+        <div class="ui-g-7">
+          <input pInputText type="text" *ngIf="isIntraState" id="cgstAmount" formControlName="cgstAmount" style="width:160px" onlyNumber="true" readOnly="true" >
+          
+        </div>
+
+        <div class="ui-g-5">
+          <label style="margin-top:5px;" *ngIf="isIntraState" for="sgstAmount">SGST@1%</label>
+          </div>
+          <div class="ui-g-7">
+            <input pInputText type="text" *ngIf="isIntraState" id="sgstAmount" formControlName="sgstAmount" style="width:160px" onlyNumber="true" readOnly="true" >
+</div>
+            
+        <div class="ui-g-5">
+        <label style="margin-top:5px;"  *ngIf="!isIntraState" for="igstAmount">IGST@2%</label>
+        </div>
+        <div class="ui-g-7">
+          <input pInputText type="text" *ngIf="!isIntraState" id="igstAmount" formControlName="igstAmount" style="width:160px" onlyNumber="true" readOnly="true" >
+          
+        </div>
+        <div class="ui-g-5">
+        <label style="margin-top:5px;"  for="tdsAmount">Total TDS</label>
+        </div>
+        <div class="ui-g-7">
+          <input pInputText type="text"  id="tdsAmount" formControlName="tdsAmount" style="width:160px" onlyNumber="true" readOnly="true">
+          
+        </div>
+      
+        <div class="ui-g-5">
+        <label style="margin-top:5px;"  for="netAmount">Total Net Amount</label>
+        </div>
+        <div class="ui-g-7">
+          <input pInputText type="text"  id="netAmount" formControlName="netAmount" style="width:160px" onlyNumber="true" >
+          
+        </div>
+
+
+    </div>
+    
+    <p-footer>
+      <div class="ui-dialog-buttonpane ui-helper-clearfix">
+          <button type="button" pButton icon="fa fa-fw fa-check" (click)="saveTds()" (onclick)="disable()" [disabled]="tdsForm.invalid"label="Save"></button>
+      </div>
+  </p-footer>
+
+</p-dialog>
+</form>
+

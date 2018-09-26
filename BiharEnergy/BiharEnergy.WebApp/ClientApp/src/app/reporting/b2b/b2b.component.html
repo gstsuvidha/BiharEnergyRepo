@@ -1,0 +1,94 @@
+<app-navbar></app-navbar>
+
+<div class="col-md-2">
+  <app-consolidated-sidebar></app-consolidated-sidebar>
+</div>
+<div class="col-md-10">
+
+
+
+    
+    <br/><br/><br/><br/>
+    <div class="col-md-12 heading">B2B Details Summary</div>
+    <div class="invoice_table_background_box">
+        <table class="table table-bordered text"  >
+          <thead style="background-color:#f4f4f6">
+            <tr>
+                <td width="8%">GSTIN/UIN of Recipient</td>
+                <td width="8%">Customer Name</td>
+                <td width="8%">Invoice Number</td>
+                <td width="8%">Invoice date</td>
+                <td width="8%">Invoice Value</td>
+                <td width="8%">Place Of Supply</td>
+                <td width="8%">Reverse Charge</td>
+                <td width="8%">Invoice Type</td>
+                <td width="8%">E-Commerce GSTIN</td>
+                <td width="8%">Rate</td>
+                <td width="8%">Taxable Value</td>
+                <td width="8%">Cess Amount</td>
+            </tr>
+            </thead>
+        
+
+
+          <tbody *ngFor="let cust of gstr1B2BList">
+              <ng-container *ngFor="let inv of cust.inv">
+                    <tr *ngFor="let item of inv.itms">
+
+                        <td >
+                            {{cust.ctin}}
+                        </td>
+                        <td><p *ngFor="let c of getCusName"><label class="label_normal" *ngIf="cust.ctin==c.gstin">{{c.customer_name}}</label></p></td>
+                        <td>
+                          {{invoicePrefix}}-{{inv.inum}}
+                        </td>
+                        <td >
+                            {{inv.idt}}
+                        </td>
+                        <td>
+                            {{inv.val | number  : '1.2-2'}}
+                        </td>
+                        <td >
+                            {{inv.pos}}-{{getPlaceOfSupply(inv.pos)}}
+                        </td>
+                        <td >
+                            N
+                        </td>
+                        <td >
+                            Regular
+                        </td>
+                        <td >
+                           
+                        </td>
+                        <td >
+                            {{item.itmDet.rt | number  : '1.2-2'}}
+                        </td>
+                        <td >
+                            {{item.itmDet.txval | number  : '1.2-2'}}
+                        </td>
+                        <td >
+                           {{item.itmDet.csamt | number  : '1.2-2'}}
+                        </td>
+                  </tr>
+               </ng-container>
+           </tbody>
+            </table>
+    </div>
+</div>
+<!--<div *ngFor="let cust of gstr1B2BList">
+
+
+    <div *ngFor="let inv of cust.inv">
+
+        <div *ngFor="let item of inv.itms">
+
+            {{cust.ctin}}&nbsp;{{inv.inum}}&nbsp;{{inv.idt}}&nbsp;{{inv.val}}&nbsp;{{inv.pos}}&nbsp;N/A&nbsp;Regular&nbsp;N/A&nbsp;{{item.num}}&nbsp;{{item.itm_det.txval}}&nbsp;{{item.itm_det.rt}}&nbsp;{{item.itm_det.camt}}&nbsp;{{item.itm_det.samt}}&nbsp;N/A
+        </div>
+    </div>
+</div>-->
+
+
+
+<!--<pre>{{gstr1B2BList | json}}</pre>-->
+
+

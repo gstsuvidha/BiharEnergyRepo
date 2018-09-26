@@ -1,0 +1,66 @@
+<app-navbar></app-navbar>
+
+
+
+<div class="col-md-2">
+    <app-consolidated-sidebar></app-consolidated-sidebar>
+</div>
+<div class="col-md-10">
+
+
+
+    <br /><br /><br /><br />
+    <div class="col-md-12 heading">Hsn Details Summary</div>
+    <div class="invoice_table_background_box">
+        <table class="table table-bordered text">
+            <thead style="background-color:#f4f4f6">
+                <tr>
+                    <td width="8">Hsn Sac Code</td>
+                    <!--<td width="8">Description of product</td>-->
+                    <td width="8">Unit</td>
+                    <td width="8">Quantity</td>
+                    <td width="8">Taxable Value</td>
+                    <td width="8">Invoice Value</td>
+                    <td width="8">Tax Amount</td>
+                    <td width="8">Cess </td>
+                </tr>
+            </thead>
+
+
+
+            <tbody *ngFor="let hsn of gstr1HsnList">
+                    <tr >
+
+                        <td width="8">
+                         {{hsn.data.hsnSc}}
+                        </td>
+                        <!--<td width="8">
+                          {{hsn.data.desc}}
+                        </td>-->
+                        <td width="8">
+                            {{hsn.data.uqc}}
+                        </td>
+                        <td width="8">
+                            {{hsn.data.qty}}
+                        </td>
+                        <td width="8">
+                            {{hsn.data.txval | number  : '1.2-2'}}
+                        </td>
+                        <td width="8">
+                            {{hsn.data.val | number  : '1.2-2'}}
+                        </td>
+                        <td width="8">
+                            {{hsn.data.iamt | number  : '1.2-2'}}
+                        </td>
+                        <td width="8">
+                            {{hsn.data.csamt| number  : '1.2-2'}}
+                        </td>
+                       
+                    </tr>
+                
+            </tbody>
+        </table>
+    </div>
+</div>
+<!--<pre>{{gstr1HsnList | json}}</pre>-->
+

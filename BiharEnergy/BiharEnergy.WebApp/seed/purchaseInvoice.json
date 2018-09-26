@@ -1,0 +1,46 @@
+[
+    {
+        "id" : 5,
+        "date" : "2018-06-08T16:04:20+0100",
+        "receivingDate" : "2018-06-07T16:04:20+0100",
+        "accountingUnitId" : 1,
+        "customerId" : 3,
+        "accountId" : 1,
+        "etin"  : "A",
+        "placeOfSupply" : "Bihar",
+        "modeOfPayment" : "cash",
+        "reference" : "AHA",
+        "shippingAddress" : "Bihar",
+        "roundOf" : 45.21,
+        "totalTaxableValue" : 1000,
+        "totalTaxAmount" : 100,
+        "totalCessAmount" : 1000,
+        "totalInvoiceValue" : 10000,
+        "supplierId" : 5,
+        "isRegisteredPurchase" : true,
+        "isReverseChargeApplicable" : true,
+        "invoiceNumber" : "1",
+        "billedPassed" : "true",
+        "isActive" : "true",
+        "purchaseInvoiceItems" : [{
+            "productId" : 5,
+            "purchaseInvoiceId" : 1,
+            "quantity"  : 10,
+            "unitPrice" : 100,
+            "discount"  : 10,
+            "taxRate"   : 10, 
+            "taxableValue" : 100,
+            "taxAmount" : 100,
+            "igstAmount" : 120,
+            "cgstAmount" : 400,
+            "sgstAmount" : 129,
+            "cessAmount" : 100,
+            "itcEligibility" : "a",
+            "ItcPercentage" : 45.8,
+            "total" : 40.00,
+            "amount" : 400.00
+        }]
+
+
+    }
+]

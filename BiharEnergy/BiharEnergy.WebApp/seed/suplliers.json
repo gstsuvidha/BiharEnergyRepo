@@ -1,0 +1,17 @@
+[
+    {
+        "id" : 5,
+        "name": "Raj",
+        "gstin": "SAVD2D2R5T5ASA2",
+        "address" : "Kadam Kuan",
+        "state" : "Bihar",
+        "contactNumber" : "8906077444",
+        "registrationType" : 1,
+        "supplierOpeningDate" : "2014-01-01T23:28:56.782Z",
+        "openBalance" : 1300,
+        "isActive" : "true",
+        "accountingUnitId" : 1
+    }
+]
+
+

@@ -1,0 +1,63 @@
+<!-- <table class = "table table-striped">
+  <tr *ngFor="let a of customerList">
+    <td>{{a.name}}</td>
+    <td>{{a.address}}</td>
+    <td>{{a.contactNumber}}</td>
+    <td>{{a.state}}</td>
+    <td>{{a.customerOpeningDate}}</td>
+    </tr> 
+     -->
+
+<p-growl [value]="msgs"></p-growl> 
+<p-confirmDialog [(visible)]="displayDialogDelete"></p-confirmDialog>    
+<h3>Customer List</h3>
+<br>
+<br>
+
+
+
+<p-table #dt [value]="customerList" [columns]="cols" selectionMode="single"  [(selection)]="selectedCustomer" 
+(onRowSelect)="customerToEdit($event)" [paginator]="true" rows="100" >
+  <ng-template pTemplate="caption">
+    <div style="text-align:left">
+      <button type="button" pButton icon="fa fa-fw fa-plus" (click)="customerToCreate()" label="Add"></button>
+    </div>
+    <div style="text-align:right">
+      <i class="fa fa-search"></i> 
+      <input type="text" pInputText size="30" placeholder="Search" (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+      </div>
+  </ng-template>
+  <ng-template pTemplate="header">
+    <tr>
+      <th style="width:5%">S.No.</th>
+      <th style="width:15%">Name</th>
+      <th style="width:15%">GSTIN</th>
+      <th style="width:15%">Registration Type</th>
+      <th style="width:15%">Address</th>
+      <th style="width:15%">State</th>
+      <th style="width:15%">Contact Number</th>
+      <th>Delete</th>
+
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-a let-rowIndex="rowIndex">
+    <tr [pSelectableRow]="a">
+      <td>{{rowIndex+1}}</td>
+      <td>{{a.name}}</td>
+      <td *ngIf="a.gstin">{{a.gstin}}</td>
+      <td *ngIf="!a.gstin">-</td>
+      <td>{{a.registrationType}}</td>
+      <td>{{a.address}}</td>
+      <td>{{a.state}}</td>
+      <td>{{a.contactNumber}}</td>
+      <td>
+        <button type="button" pButton icon="fa fa-fw fa-trash" (click)="showDialogToDelete(a)"></button>
+      </td>
+
+    </tr>
+  </ng-template>
+</p-table>
+
+<app-customer-form [id]= "id"
+                  (closeDialog)="id = $event"
+                  (refreshList)="getCustomers()"></app-customer-form>

@@ -1,0 +1,27 @@
+
+/* font size for all text in a html page*/
+
+.text{
+    font-size:12px;
+}
+
+
+
+/*detail summary heading box */
+.heading {
+    background-color: #17c4bb;
+    padding-left: 20px;
+    font-size: 20px;
+    font-family: Calibri;
+    color: #ffffff;
+    width: 1107px;
+    height: 40px;
+}
+
+
+
+/*fixing invoice table size */
+.invoice_table_background_box {
+    height: auto;
+    width: 1107px;
+}

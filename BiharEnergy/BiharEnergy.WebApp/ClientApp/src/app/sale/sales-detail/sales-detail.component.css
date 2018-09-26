@@ -1,0 +1,82 @@
+
+
+p{
+    line-height: 10px;
+}
+fieldset{
+    position: relative;
+}
+legend {
+  color:black;
+  width:100px;
+  border-collapse: collapse;
+  font-size:110%;
+  background-color: white;
+  text-align:center;
+   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  }
+table {
+    table-layout: auto;
+    border-left: none;
+    border-right: none;
+}
+
+td,th,tbody,thead {
+    border: 1px solid black;
+    font-size: 12px; 
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;    
+}
+thead.head th{
+    height: 40px; 
+    text-align: center;
+}
+tbody.body td{
+    
+    height: 30px;
+    text-align: center;
+}
+tbody.body th{
+    
+    height: 30px;
+    text-align: right;
+}
+tfoot.foot th{
+    border:none;
+    height: 30px;
+    text-align: right;
+    }
+tfoot.foot td{
+    border:none;
+    height: 30px;
+    text-align: right;
+    }
+label {
+  width:auto;
+  padding: 0px;
+  font-weight:bold;
+  font-size: 12px;
+  align-content: left;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  }
+.text{
+    font-family:Calibri;
+    font-weight:bold;
+    font-size:30px;
+    color:black;
+
+}
+.texty {
+   font-family: Calibri; font-weight: bold; font-size: 36px;color: black;margin-bottom:30px; text-align:center;
+}
+
+hr{
+    width:600px;
+ 
+}
+
+/*--for changing label font-- */
+.label_font{
+    font-weight: 200;
+    font-size: 15px;
+}
+

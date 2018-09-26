@@ -1,0 +1,365 @@
+<app-navbar></app-navbar>
+
+<div class="col-md-2">
+  <app-consolidated-sidebar></app-consolidated-sidebar>
+</div>
+ <div class="col-md-10"  *ngIf="gstr1">
+
+    <div style="text-align:center; font-size:20px; font-family:Calibri; font-weight:bold">Form GSTR-1</div>
+    
+        <table class="col-md-11">
+            <tr>
+                <td width="80%">
+                    <a (click)="export()" class="btn btn-info">Click here to save report file</a>
+
+                    <a id="downloadAnchorElem" style="display:none"></a>
+
+                </td>
+                <td width="20%">
+                    <table class="table table-bordered">
+                        <tr>
+                            <td width="50%">
+                                Year
+                            </td>
+                            <td width="50%">
+                                {{year}}-{{nextYear}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Month
+                            </td>
+                            <td>
+                                {{getMonthName(monthId)}}
+                            </td>
+                        </tr>
+                    </table>
+                 </td>
+                
+            </tr>
+            
+        </table>
+
+       
+
+        <table class="table table-bordered invoice_table_background_box">
+            
+                <tr>
+                    <td width="40%">GSTIN</td>
+                    <td>{{gstr1.gstin}}</td>
+                </tr>
+
+                <tr>
+
+                    <td width="40%" >Legal name of the registered person </td>
+                    <!-- <td>{{gstr1AccountingUnitExtraInfoList.legalNameOfCompany}}</td> -->
+                    <td></td>
+                </tr>
+                <tr>
+
+                    <td width="40%">Trade name, if any</td>
+                    <td>N/A</td>
+                </tr>
+                <tr>
+
+                    <td width="40%">Aggregate Turnover in the preceding financial year</td>
+                    <td>{{gstr1.gt}}</td>
+                </tr>
+                <tr>
+
+                    <td width="40%">Aggregate Turnover - April to June 2017</td>
+                    <td>{{gstr1.curGt}}</td>
+                </tr>
+        
+
+        </table>
+
+
+        
+
+        <div class="heading">4A,4B,4C,6B,6C-B2B Invoices</div>
+        <div class="invoice_table_background_box">
+            <table class="table table-bordered text">
+                <thead style="background-color:#f4f4f6">
+                    <tr>
+
+                        <td>No. of records</td>
+                        <td>Total Invoice Value</td>
+                        <td>Total Taxable Value</td>
+                        <td>Total Integrated Value</td>
+                        <td>Total Central Value</td>
+                        <td>Total State/UT Tax</td>
+                        <td>Total Cess</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{totalB2bInvoicesNo}}</td>
+                        <td>{{totalB2bInvoiceValue| number : '1.2-2'}}</td>
+                        <td>{{totalB2bTaxableValue| number : '1.2-2'}}</td>
+                        <td>{{totalB2bIgst| number : '1.2-2'}}</td>
+                        <td>{{totalB2bSgst| number : '1.2-2'}}</td>
+                        <td>{{totalB2bCgst| number : '1.2-2'}}</td>
+                        <td>{{totalB2bCess| number : '1.2-2'}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+      
+
+        
+
+        <div class="heading">5A,5B - B2C (Large) Invoices</div>
+        <div class="invoice_table_background_box">
+            <table class="table table-bordered text">
+                <thead style="background-color:#f4f4f6">
+                    <tr>
+
+                        <td>No. of records</td>
+                        <td>Total Invoice Value</td>
+                        <td>Total Taxable Value</td>
+                        <td>Total Integrated Value</td>
+                        <td>Total Cess</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+
+                        <td>{{totalB2clInvoicesNo}}</td>
+                        <td>{{totalB2clInvoiceValue | number : '1.2-2'}}</td>
+                        <td>{{totalB2clTaxableValue | number : '1.2-2'}}</td>
+                        <td>{{totalB2clIgst | number : '1.2-2'}}</td>
+                        <td>{{totalB2clCess | number : '1.2-2'}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+      
+      
+
+        <div class="heading">9B - Credit/Debit Notes (Registered)</div>
+        <div class="invoice_table_background_box">
+            <table class="table table-bordered text">
+                <thead style="background-color:#f4f4f6">
+                <tr>
+
+                    <td>No. of records</td>
+                    <td>Total Invoice Value</td>
+                    <td>Total Taxable Value</td>
+                    <td>Total Integrated Value</td>
+                    <td>Total Central Value</td>
+                    <td>Total State/UT Tax</td>
+                    <td>Total Cess</td>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr>
+
+                        <td>{{totalCdnrInvoicesNo}}</td>
+                        <td>{{totalCdnrInvoiceValue| number : '1.2-2'}}</td>
+                        <td>{{totalCdnrTaxableValue| number : '1.2-2'}}</td>
+                        <td>{{totalCdnrIgst| number : '1.2-2'}}</td>
+                        <td>{{totalCdnrSgst| number : '1.2-2'}}</td>
+                        <td>{{totalCdnrCgst| number : '1.2-2'}}</td>
+                        <td>{{totalCdnrCess| number : '1.2-2'}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    
+ 
+        
+
+        <div class="heading">9B - Credit/Debit Notes (Unregistered)</div>
+        <div class="invoice_table_background_box">
+            <table class="table table-bordered text">
+                <thead style="background-color:#f4f4f6">
+                    <tr>
+                        <td>No. of records</td>
+                        <td>Total Invoice Value</td>
+                        <td>Total Taxable Value</td>
+                        <td>Total Integrated Value</td>
+                        <td>Total Cess</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{totalCdnurInvoicesNo}}</td>
+                        <td>{{totalCdnurInvoiceValue| number : '1.2-2'}}</td>
+                        <td>{{totalCdnurTaxableValue| number : '1.2-2'}}</td>
+                        <td>{{totalCdnurIgst| number : '1.2-2'}}</td>
+                        <td>{{totalCdnurCess| number : '1.2-2'}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    
+
+       
+
+        <div class="heading">B2C (Others)</div>
+        <div class="invoice_table_background_box">
+            <table class="table table-bordered text">
+                <thead style="background-color:#f4f4f6">
+                    <tr>
+
+                        <td>No. of records</td>
+                        <td>Total Invoice Value</td>
+                        <td>Total Taxable Value</td>
+                        <td>Total Integrated Value</td>
+                        <td>Total Central Value</td>
+                        <td>Total State/UT Tax</td>
+                        <td>Total Cess</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+
+                        <td>{{totalB2cInvoicesNo}}</td>
+                        <td>{{totalB2cInvoiceValue| number : '1.2-2'}}</td>
+                        <td>{{totalB2cTaxableValue| number : '1.2-2'}}</td>
+                        <td>{{totalB2cIgst| number : '1.2-2'}}</td>
+                        <td>{{totalB2cSgst| number : '1.2-2'}}</td>
+                        <td>{{totalB2cCgst| number : '1.2-2'}}</td>
+                        <td>{{totalB2cCess| number : '1.2-2'}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    
+    
+
+
+       
+
+        <div class="heading">11A(1),11A(2) - Tax Liability (Advances Received)</div>
+        <div class="invoice_table_background_box">
+            <table class="table table-bordered text">
+                <thead style="background-color:#f4f4f6">
+                    <tr>
+
+                        <td>No. of records</td>
+                        <td>Total Invoice Value</td>
+                        <td>Total Taxable Value</td>
+                        <td>Total Integrated Value</td>
+                        <td>Total Central Value</td>
+                        <td>Total State/UT Tax</td>
+                        <td>Total Cess</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+
+                        <td>{{totalAdvRevInvoicesNo}}</td>
+                        <td>{{totalAdvRevInvoiceValue| number : '1.2-2'}}</td>
+                        <td>{{totalAdvRevTaxableValue| number : '1.2-2'}}</td>
+                        <td>{{totalAdvRevIgst| number : '1.2-2'}}</td>
+                        <td>{{totalAdvRevSgst| number : '1.2-2'}}</td>
+                        <td>{{totalAdvRevCgst| number : '1.2-2'}}</td>
+                        <td>{{totalAdvRevCess| number : '1.2-2'}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+      
+
+    <div class="heading">HSN-wise summary of outward supplies</div>
+    <div class="invoice_table_background_box">
+        <table class="table table-bordered text">
+            <thead style="background-color:#f4f4f6">
+                <tr>
+
+                    <td>No. of records</td>
+                    <td>Total Invoice Value</td>
+                    <td>Total Taxable Value</td>
+                    <td>Total Integrated Value</td>
+                    <td>Total Central Value</td>
+                    <td>Total State/UT Tax</td>
+                    <td>Total Cess</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+
+                    <td>{{totalHsnInvoicesNo}}</td>
+                    <td>{{totalHsnInvoiceValue| number : '1.2-2'}}</td>
+                    <td>{{totalHsnTaxableValue| number : '1.2-2'}}</td>
+                    <td>{{totalHsnIgst| number : '1.2-2'}}</td>
+                    <td>{{totalHsnSgst| number : '1.2-2'}}</td>
+                    <td>{{totalHsnCgst| number : '1.2-2'}}</td>
+                    <td>{{totalHsnCess| number : '1.2-2'}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    
+    <div class="heading">Export Invoices</div>
+    <div class="invoice_table_background_box">
+            <table class="table table-bordered text">
+                <thead style="background-color:#f4f4f6">
+                    <tr>
+                        <td width="25%">No. of records</td>
+                        <td width="25%">Total Invoice Value</td>
+                        <td width="25%">Total Taxable Value</td>
+                        <td width="25%">Total Integrated Value</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{totalExportInvoicesNo}}</td>
+                        <td>{{totalExportInvoiceValue| number : '1.2-2'}}</td>
+                        <td>{{totalExportTaxableValue| number : '1.2-2'}}</td>
+                        <td>{{totalExportIgst| number : '1.2-2'}}</td>
+                    </tr>
+                </tbody>
+            </table>
+    </div>
+
+    
+
+    <div class="heading">Document Issued</div>
+    <div class="invoice_table_background_box">
+        <table class="table table-bordered text">
+            <thead style="background-color:#f4f4f6">
+                <tr>
+
+                    <td>No. of records</td>
+                 <!--   <td>Documents Issued</td>           Donot understand what is this???--> 
+                     <td>Documents Cancelled</td>
+                    <td>Net Issued Document</td>
+                    
+                </tr>
+            </thead>
+            <tbody *ngFor="let doc of gstr1DocDetail">
+                <tr>
+
+                    <td>{{doc.docDet.docs.totnum}}</td> 
+                    <!--<td>{{doc.docDet.docs.netIssue}}</td> -->
+                     <td>{{doc.docDet.docs.cancel}}</td>
+                    <td>{{doc.docDet.docs.netIssue}}</td>
+                    
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    </div>  
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

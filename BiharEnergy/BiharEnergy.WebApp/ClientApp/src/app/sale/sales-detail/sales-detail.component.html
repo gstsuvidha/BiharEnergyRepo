@@ -1,0 +1,308 @@
+<div class="container-fluid " style="margin-left:20px; margin-right:40px; align-items: center;">
+    
+  <div *ngIf="salesInvoice" id="print-section">
+      <br />
+      <div class="row">
+          <div class="col-md-1"></div>
+          <div class="col-md-2">
+              <!--<img src="{{salesInvoice.accountingUnit.imgUrl}}" style="margin-left:20px;" width="100" height="100" />-->
+          </div>
+          <div class="texty col-md-6">{{salesInvoice.accountingUnit.businessName}}</div>           
+      </div>
+      <p style="text-align:center; font-family:Calibri; font-size:24px;" *ngFor="let  accountingUnitAdd of accountingUnitAddress">
+  {{ accountingUnitAdd}}
+</p>
+      <br/>
+      <div class="row">
+          
+          <div class="co-sm-6 col-lg-6 text-left">
+
+              <p >
+              
+                GSTIN:
+                  
+                      {{salesInvoice.accountingUnit.gstin}}
+                  
+              </p>
+              <p >
+                  State:
+                  {{getPlaceOfSupply(salesInvoice.accountingUnit.placeOfSupply)}}
+              </p>
+                 <p>
+                  Contact Number:
+                  {{salesInvoice.accountingUnit.contactNumber}}
+              </p>
+          </div>
+          <div class="co-sm-6 col-lg-6 text-right">
+
+              <p >
+                  Invoice No.:
+                {{salesInvoice.invoicePrefix}} - {{salesInvoice.invoiceNumber}}
+              </p>
+
+              <p >
+                  Invoice Date:
+                  {{salesInvoice.date |date:'dd/MM/yyyy'}}
+              </p>
+          </div>
+          </div>
+          <br>
+          <fieldset class="col-md-12 col-lg-12">
+              <legend>Tax Invoice</legend>
+              <div style="text-align: center;">
+                <h4>ORIGINAL/DUPLICATE/TRIPLICATE</h4>
+              </div>
+              <div *ngIf="salesInvoice.customer" class="col-md-6 col-lg-6 text-left">
+                  <p >
+                      Name:
+                     {{salesInvoice.customer.name}}
+                  </p>
+                  <p *ngIf="salesInvoice.customer.gstin">
+                      GSTIN:
+                      {{salesInvoice.customer.gstin}}
+                  </p>
+                  <p>
+                      Contact Number : 
+                      {{salesInvoice.customer.contactNumber}}
+                  </p>
+                  <p>
+                      Place of Supply :
+                      {{getPlaceOfSupply(salesInvoice.placeOfSupply)}}
+                  </p>
+              </div>
+              <div *ngIf="!salesInvoice.customer" class="col-md-5 col-lg-5 text-left">
+
+                  <p *ngIf="salesInvoice.customerName">
+                      Name:
+                      {{salesInvoice.customerName}}
+                  </p>
+                  
+                  <p *ngIf="salesInvoice.billingAddress">
+                      Billed Address : 
+                      {{salesInvoice.billingAddress}}
+                  </p>
+               
+                  <p>
+                      Place of Supply :
+                      {{getPlaceOfSupply(salesInvoice.placeOfSupply)}}
+                  </p>
+              </div>
+              <span>
+              <label *ngIf="salesInvoice.customer" class="col-md-6 col-lg-6 label_font">
+                 Billed address : &nbsp;  </label>
+                 <label *ngFor="let billedCustomerAdd of billedCustomerAddress" class="text-right label_font">
+                      {{billedCustomerAdd}}&nbsp;
+                  
+              </label>
+            </span>
+            <br>
+            <span>
+              <label *ngIf="salesInvoice.shippingAddress" class="col-md-6 col-lg-6 label_font">Shipping Address:&nbsp; &nbsp;</label>
+          
+              <label colspan="2" class="amt label_font" style="text-align:center;" *ngFor="let shppingCustomerAdd of shppingCustomerAddress">{{shppingCustomerAdd}}</label>
+          
+            </span>
+              <br/>
+              <br />
+              
+              <table class="col-md-12 col-lg-12 text-center"  >
+                 
+                  <thead class="head " >
+                      <tr>
+                          <td class="col-md-1 sn">Sn No.</td>
+                          <td colspan="2" class="description">Description</td>
+                          <td class="col-md-1 tdth" >HSN/SAC</td>
+                          <td class="col-md-1 tdth">Unit</td>
+                          <td class="col-md-1 tdth">Qty</td>
+                          <td class="col-md-1 tdth">Rate(Per Unit)</td>
+                          <td class="col-md-1 taxrateDiscount" *ngIf="salesInvoice.totalDiscount!=0">Discount</td>
+                          <td class="col-md-1 tdth">Taxable value</td>
+                          <td class="col-md-1 taxrateDiscount">Tax Rate</td>
+                          <td colspan="2" class="col-md-1 tdth" *ngIf="salesInvoice.supplyType==0">IGST</td>
+                          <td colspan="2" class="col-md-1 tdth" *ngIf="salesInvoice.supplyType==1">CGST</td>
+                          <td colspan="2" class="col-md-1 tdth" *ngIf="salesInvoice.supplyType==1">SGST</td>
+                          <td class="col-md-1 tdth" *ngIf="salesInvoice.totalCess">Cess</td>
+                          <td class="col-md-1 totalCal">Total</td>
+                      </tr>
+                  </thead>
+
+                  <tbody class="body">
+                      <tr class="info" *ngFor="let item of salesInvoice.salesInvoiceItems;let i=index">
+                          <td align="center">{{i+1}}</td>
+                          <td colspan="2" align="center">{{item.product.name}}&nbsp;<label *ngIf="item.product.description">-</label> &nbsp;{{item.product.description}}</td>
+                          <td align="center" > {{item.product.hsnSacCode}} </td>
+                          <td align="center" > {{item.product.unit}}  </td>
+                          <td align="center" > {{item.quantity}}  </td>
+                          <td align="center" > {{item.unitPrice}}  </td>
+                          <td align="center" *ngIf="salesInvoice.totalDiscount!=0"> {{item.discount }}% </td>
+                          <td align="center">{{item.taxableValue | number :'1.2-2'}}</td>
+                          <td align="center">{{item.taxRate}}%</td>
+                          <td align="center"  colspan="2" *ngIf="salesInvoice.supplyType==0" > {{item.igstAmount | number : '1.2-2'}}  </td>
+                          <td align="center"  colspan="2" *ngIf="salesInvoice.supplyType==1"> {{item.cgstAmount | number : '1.2-2'}} </td>
+                          <td align="center"  colspan="2" *ngIf="salesInvoice.supplyType==1"> {{item.sgstAmount | number : '1.2-2'}} </td>
+                          <td class="center" *ngIf="salesInvoice.totalCess">{{item.cess | number : '1.2-2'}}</td>
+                          <td class="col-md-1">{{(item.taxableValue+item.igstAmount+item.cgstAmount+item.sgstAmount+item.cess) |number : '1.2-2'}}</td>
+                      </tr>
+                      <tr>
+                          <td scope="row" colspan="7" style="text-align:right;">Total:</td>
+                          <td *ngIf="salesInvoice.totalDiscount">-</td>
+                          <td align="center" >{{salesInvoice.totalTaxableValue | number : '1.2-2' }}</td>  
+                          <td >-</td>               
+                          <td align="center" colspan="2" class="igst" *ngIf="salesInvoice.supplyType==0">{{salesInvoice.totalIgst | number : '1.2-2'}}</td>
+                          <td align="center" colspan="2" class="cgstsgst" *ngIf="salesInvoice.supplyType==1">{{salesInvoice.totalCgst | number : '1.2-2'}}</td>
+                          <td align="center" colspan="2" class="cgstsgst" *ngIf="salesInvoice.supplyType==1" >{{salesInvoice.totalSgst | number : '1.2-2' }}</td>
+                          <td *ngIf="salesInvoice.totalCess">{{salesInvoice.totalCess | number : '1.2-2' }}</td>
+                          <td class="col-md-1">{{(salesInvoice.totalTaxableValue+salesInvoice.totalIgst+salesInvoice.totalCgst+salesInvoice.totalSgst+salesInvoice.totalCess)| number : '1.2-2'}}</td>
+                      </tr>
+
+                  </tbody>
+
+                  <tfoot class="foot">
+                      <tr><td>&nbsp;</td></tr>
+                      <tr>
+                          <!-- <td colspan="3" class="receiveAmt" > Mode Of Payment:</td>
+                          <td colspan="2" class="amt" style="padding-right:80px" *ngIf="salesInvoice.modeOfPayment">{{salesInvoice.modeOfPayment}}</td>
+                          <td colspan="2" class="amt" style="padding-right:80px" *ngIf="!salesInvoice.modeOfPayment">Unpaid</td>
+                            -->
+                            <td colspan="5"></td>
+                          <td class="invoice" colspan="6">Total Taxable Amount (in figure Rs):</td>
+                          <td >₹{{(salesInvoice.totalTaxableValue+salesInvoice.totalCess)|number : '1.2-2'}}</td>
+                      </tr>
+                      <tr>  
+                          <!-- <td colspan="3" class="receiveAmt">Received Amount: </td>
+                          <td *ngIf="salesInvoice.receivedAmount" colspan="2" class="amt" style="padding-right:80px">₹ {{salesInvoice.receivedAmount| number : '1.2-2'}}</td>
+                          <td *ngIf="!salesInvoice.receivedAmount" colspan="2" class="receiveAmt" style="padding-right:80px">₹ 0.0 </td> -->
+                          <td colspan="5"></td>
+                          <td class="invoice" colspan="6">Total Tax Amount Value(in figure Rs):</td>
+                          <td>₹{{salesInvoice.totalTaxAmount| number : '1.2-2'}}</td>                           
+                      </tr>
+                      <tr>
+                          <!-- <td *ngIf="dueAmt" colspan="3" class="receiveAmt">Due Amount: </td>
+                          <td *ngIf="dueAmt" colspan="2" class="amt" style="padding-right:80px">₹{{dueAmt|number : '1.2-2'}}</td>
+                          <td *ngIf="!dueAmt" colspan="5" class="receiveAmt" style="padding-right:80px"> </td> -->
+                          <td colspan="5"></td>
+                          <td class="invoice" colspan="6">Total Invoice Value(in figure Rs):</td>
+                          <td>₹{{salesInvoice.totalInvoiceValue| number : '1.0-0'}}</td>
+                      </tr>
+                      <tr>
+
+                          <td colspan="3" class="receiveAmt" *ngIf="salesInvoice.reference">  Reference:</td>
+                          <td colspan="2" class="amt" style="padding-right: 12px;text-align: center;
+                          padding-left: 12px;padding-top: 30px;" *ngIf="salesInvoice.reference">{{salesInvoice.reference}}</td>
+                          <td  *ngIf="!salesInvoice.reference" colspan="5" class="receiveAmt"> </td>
+                          <td class="invoice" colspan="6">Total Invoice Value(in Words Rs):</td>
+                          <td class="inWordsInv">{{inWords(salesInvoice.totalInvoiceValue| number : '1.0-0')}}</td>
+                        
+                      </tr>
+                      <tr>
+
+                          <td colspan="5" class="receiveAmt"></td>
+                          <td class="invoice" colspan="6">Amount of Tax subject to Reverse Charges: </td>
+                          <td>N/A</td>
+                      </tr>
+
+                  </tfoot>
+              </table>
+                            <!--<p style="padding-left:6px" *ngIf="salesInvoice.receivedAmount">
+                  Received Amount:
+                  ₹ {{salesInvoice.receivedAmount| number : '1.2-2'}}
+              </p>
+                  <p style="padding-left:6px" *ngIf="salesInvoice.receivedAmount!=salesInvoice.totalInvoiceValue">
+                  Due Amount:
+                  <label >₹{{dueAmt|number : '1.2-2'}}</label> 
+              </p>
+              
+              <p style="padding-left:6px" *ngIf="salesInvoice.modeOfPayment">
+                  Mode Of Payment:
+                  {{salesInvoice.modeOfPayment}}
+              </p>              
+              <p style="padding-left:6px" *ngIf="salesInvoice.reference">
+                  Refrence:
+                  {{salesInvoice.reference}}
+              </p>
+              <p style="padding-left:6px" *ngIf="salesInvoice.shippingAddress">
+                  Shipping Address:
+                 <label *ngFor="let shppingCustomerAdd of shppingCustomerAddress">{{shppingCustomerAdd}}</label> 
+              </p>-->
+
+             
+              <table class="col-md-12 ttable " style="margin-top:23px;" >
+                  <thead>
+                      <tr class="tabletd">
+                          <td class="col-md-6" >
+                              <label typeof="text" for="termsAndCondition" class="text"  >
+                                  Terms and condition
+                              </label>
+                          </td>
+                          <td class="col-md-6 ">
+
+                              <label typeof="text" for="businessName">
+                                  For : <label class=" text">{{salesInvoice.accountingUnit.businessName}}</label>
+                              </label>
+                          </td>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr class="tabletd">
+
+                          <td class="col-md-6 tabletd" >
+                              <label style="padding-left:6px">Our Bank Account details are : </label>
+
+                              <p style="padding-left:6px" *ngIf="salesInvoice.accountingUnit.bankAccountName">
+                                  Bank Account Name:
+                                  {{salesInvoice.accountingUnit.bankAccountName}}
+                              </p>
+                          <p style="padding-left:6px" *ngIf="salesInvoice.accountingUnit.bankAccountNumber">
+                                  Bank Account Number:
+                                 {{salesInvoice.accountingUnit.bankAccountNumber}}
+                          </p>
+                          <p style="padding-left:6px;" *ngIf="salesInvoice.accountingUnit.ifscCode">
+                                  IFSC Code:
+                                 {{salesInvoice.accountingUnit.ifscCode}}
+                              </p>
+                              <br />
+                              <div *ngFor="let termAndCond of termAndCondition">
+                                  
+                                   <p style="padding-left:6px" typeof="text" for="termsAndCondition" *ngIf="termAndCondition == [''] ">N/A</p> 
+                                  <p style="padding-left:6px" typeof="text" for="termsAndCondition"  *ngIf="termAndCondition">{{termAndCond}}<br /></p>
+                              </div>
+                              <br />
+                          </td>
+                          <td class="col-md-6 tabletd">
+                              <br /><br /><br /><br />
+                              <p>.........................................................................</p>
+                              <label typeof="text" for="authorisedSignatory">
+
+                                  (Authorised Signatory)
+                              </label>
+                          </td>
+                      </tr>
+
+                  </tbody>
+            
+              </table>
+          </fieldset>
+
+
+
+      </div>
+  </div>
+  <br /><br />
+  <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-1">
+          <a class="btn btn-success" [routerLink]="['../../',0]">Create New</a>
+      </div>
+      <div class="col-md-1"></div>      
+      <div class="col-md-1">
+          <button class="btn btn-warning" (click)="print()">Print</button>
+      </div>
+      <div class="col-md-1"></div>
+      <div class="col-md-1">
+          <a class="btn btn-info" [routerLink]="['/authenticated/sales']">Back</a>
+          </div>
+         
+      <br/><br/>
+  </div>
+  
+

@@ -1,0 +1,62 @@
+/* CSS Document */
+.btn-primary {
+    margin-top: 30px;
+    background-color :#66CC99;
+    color: #FFFFFF;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bolder;
+    text-align: center;
+    border: 0px;
+    align-content: center;
+    width: 70%;
+}
+.btn-primary:hover{
+    background-color: #CCCCCC;
+}
+
+.form{
+    border:1px solid #CCCCCC;
+    border-radius:5px;
+}
+
+.gst_logo_bar{
+margin-top:10px;
+background-color:#000000;
+height:40px;
+width:100%;
+border-radius:5px;
+}
+.gst_logo{
+padding-left: 10px;
+margin-top: 10px;
+width:60px;
+ height:27px;
+}
+::-webkit-input-placeholder {
+
+   text-align: center;
+
+}
+
+:-moz-placeholder { /* Firefox 18- */
+
+   text-align: center;
+
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+
+   text-align: center;
+
+}
+
+:-ms-input-placeholder {  
+
+   text-align: center;
+
+}
+.button1{
+    border-radius: 6px;
+}

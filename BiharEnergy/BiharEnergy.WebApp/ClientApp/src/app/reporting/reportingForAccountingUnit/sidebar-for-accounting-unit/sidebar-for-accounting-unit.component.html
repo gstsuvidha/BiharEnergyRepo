@@ -1,0 +1,70 @@
+<button pButton type="button" [routerLink]="['/reporting',monthId,yearId,companyId,'consolidated','accounting']" label="Back" class="ui-button-success"></button>
+<br />
+<br />
+<div class="col-md-12 col-sm-12 col-xs-12">
+  <ul class="nav nav-pills nav-stacked" id="a">
+      
+      <li [routerLinkActive]="['link-active']">
+          <a [routerLink]="['/reporting',monthId,yearId,companyId,accountingUnitId,'accounting-unit','gstr1-final-report-for-accountingunit']">
+              Gstr1 Final Report
+          </a>
+      </li>
+      <li [routerLinkActive]="['link-active']">
+        <a [routerLink]="['/reporting',monthId,yearId,companyId,accountingUnitId,'accounting-unit','gstr-3b-report-for-accountingunit']">
+            Gstr3b 
+        </a>
+    </li>
+    <li [routerLinkActive]="['link-active']">
+        <a [routerLink]="['/reporting',monthId,yearId,companyId,accountingUnitId,'accounting-unit','gstr1-b2b-report-for-accountingunit']">
+            B2B
+        </a>
+    </li>
+    <li [routerLinkActive]="['link-active']">
+        <a [routerLink]="['/reporting',monthId,yearId,companyId,accountingUnitId,'accounting-unit','gstr1-b2c-report-for-accountingunit']">
+            B2C
+        </a>
+    </li>
+    <li [routerLinkActive]="['link-active']">
+        <a [routerLink]="['/reporting',monthId,yearId,companyId,accountingUnitId,'accounting-unit','gstr1-b2cl-report-for-accountingunit']">
+            B2CL
+        </a>
+    </li>
+    <li [routerLinkActive]="['link-active']">
+        <a [routerLink]="['/reporting',monthId,yearId,companyId,accountingUnitId,'accounting-unit','gstr1-cdnr-report-for-accountingunit']">
+           CDNR
+        </a>
+    </li>
+    <li [routerLinkActive]="['link-active']">
+        <a [routerLink]="['/reporting',monthId,yearId,companyId,accountingUnitId,'accounting-unit','gstr1-cdnur-report-for-accountingunit']">
+            CDNUR
+        </a>
+    </li>
+    <li [routerLinkActive]="['link-active']">
+        <a [routerLink]="['/reporting',monthId,yearId,companyId,accountingUnitId,'accounting-unit','gstr1-advance-receive-report-for-accountingunit']">
+            Advance Receive
+        </a>
+    </li>
+    <li [routerLinkActive]="['link-active']">
+        <a [routerLink]="['/reporting',monthId,yearId,companyId,accountingUnitId,'accounting-unit','gstr1-export-report-for-accountingunit']">
+           Export
+        </a>
+    </li>
+    <li [routerLinkActive]="['link-active']">
+        <a [routerLink]="['/reporting',monthId,yearId,companyId,accountingUnitId,'accounting-unit','gstr1-hsn-report-for-accountingunit']">
+           Hsn
+        </a>
+    </li>
+    <li [routerLinkActive]="['link-active']">
+        <a [routerLink]="['/reporting',monthId,yearId,companyId,accountingUnitId,'accounting-unit','gstr1-document-detail-report-for-accountingunit']">
+           Document Detail
+        </a>
+    </li>
+
+    <li [routerLinkActive]="['link-active']">
+        <a [routerLink]="['/reporting',monthId,yearId,companyId,accountingUnitId,'accounting-unit','gstr7']">
+            Gstr7 
+        </a>
+    </li>
+    
+    </ul>
+  </div>      

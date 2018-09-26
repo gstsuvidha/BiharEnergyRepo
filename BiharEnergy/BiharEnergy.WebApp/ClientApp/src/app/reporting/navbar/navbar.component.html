@@ -1,0 +1,29 @@
+<br />
+<div class="ui-g">
+    <div class="ui-g-12 ui-md-4">
+        <button pButton type="button" [routerLink]="['/reporting']" label="Back"></button>
+    </div>
+    <div class="ui-g-12 ui-md-2 ui-md-offset-5">
+        <ul>
+            <li>
+               <label for="company">Company</label> 
+               {{getCompanyName(companyId)}}
+            </li>
+            <br />           
+            <li>
+                <label for="period of return">Period Of Return</label> 
+                {{getMonthName(monthId)}}
+            </li>
+        </ul>
+    </div>
+</div>
+
+<br />
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" [routerLink]="['/reporting',monthId,yearId,companyId,'consolidated']" routerLinkActive="link-active" >Consolidated</a>
+        <a class="navbar-brand" [routerLink]="['/reporting',monthId,yearId,companyId,'consolidated','accounting']" routerLinkActive="link-active" >Accounting</a>
+      </div>
+     </div>
+</nav>      

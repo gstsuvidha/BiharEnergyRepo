@@ -1,0 +1,297 @@
+
+
+<div class="col-md-2">
+  <app-sidebar-for-accounting-unit></app-sidebar-for-accounting-unit>
+</div>
+<div *ngIf = "gstr3b" class="col-md-10">
+
+    <div style="text-align:center; font-size:20px; font-family:Calibri; font-weight:bold">Form GSTR-3B</div>
+
+    <table class="col-md-12" >
+        <tr>
+            <td width="80%">
+                GSTIN :  {{gstr3b.gstin}}   
+                
+                
+                <br> Legal Name of the registered person : 
+                {{gstr3b.legalNameOfTheRegisteredPerson}}
+
+            </td>
+            <td width="20%">
+
+
+
+                <table class="table table-bordered">
+                    <tr>
+                        <td width="50%">
+                            Year
+                        </td>
+                        <td width="50%">
+                                {{displayYear}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Month
+                        </td>
+                        <td>{{getMonthName(monthId)}}</td>
+                    </tr>
+
+                </table>
+            </td>
+    </table>
+    <br> <b>Detail of Outward Supplies and Inward supplies liable to reverse charges </b>
+
+
+
+
+     <table class="table table-bordered table-condensed table-hover"> 
+
+
+
+        <tr class="tr5">
+            <td width="43%">Name of Supplies</td>
+            <td width="13%">Total Taxable Value</td>
+            <td width="11%">Integrated Tax</td>
+            <td width="11%">Central Tax</td>
+            <td width="11%">State/UT Tax</td>
+            <td width="11%">Cess</td>
+        </tr>
+
+
+
+        <tr>
+            <td width="43%">(a) Outward taxable supplies(other than zero rated, Nil rated and exempted) </td>
+            <td width="13%">{{gstr3b.outwardSupplyOtherThanExempted.totalTaxableValue | number:  '1.2-2'}}</td>
+            <td width="11%">{{gstr3b.outwardSupplyOtherThanExempted.igst | number:  '1.2-2'}}</td>
+            
+            <td width="11%">{{gstr3b.outwardSupplyOtherThanExempted.cgst | number:  '1.2-2'}}</td>
+            <td width="11%">{{gstr3b.outwardSupplyOtherThanExempted.sgst | number:  '1.2-2'}}</td>
+            <td width="11%">{{gstr3b.outwardSupplyOtherThanExempted.cess | number:  '1.2-2'}}</td>
+        </tr>
+        <tr>
+            <td width="43%">(b) Outward taxable supplies(zero rated) </td>
+                
+                        <td width="13%"></td>
+                        <td width="11%"></td>
+                        <td width="11%"></td>
+                        <td width="11%"></td>
+                        <td width="11%"></td>
+                        
+                    </tr>
+                    <tr>
+        <td width="43%">(c) Other Outward supplies(Nil rated, exempted) </td>  
+        <td width="13%">{{gstr3b.otherOutwardSupplyNilRatedExempted.totalTaxableValue | number:  '1.2-2'}}</td>
+        <td width="11%">{{gstr3b.otherOutwardSupplyNilRatedExempted.igst | number:  '1.2-2'}}</td>
+        <td width="11%">{{gstr3b.otherOutwardSupplyNilRatedExempted.cgst | number:  '1.2-2'}}</td>
+        <td width="11%">{{gstr3b.otherOutwardSupplyNilRatedExempted.sgst | number:  '1.2-2'}}</td>
+        <td width="11%">{{gstr3b.otherOutwardSupplyNilRatedExempted.cess | number:  '1.2-2'}}</td>        </tr>
+
+        <tr>
+            <td width="43%">(d) Inward supplies(liable to reverse charge) </td>
+            <td width="13%"></td>
+            <td width="11%"></td>
+            <td width="11%"></td>
+            <td width="11%"></td>
+            <td width="11%"></td>
+        </tr>
+
+        <tr>
+            <td width="43%">(e) Non-GST outward supplies</td>
+            <td width="13%"></td>
+            <td width="11%"></td>
+            <td width="11%"></td>
+            <td width="11%"></td>
+            <td width="11%"></td>
+        </tr>
+    </table>
+    <br> <b>Inter-state supplies</b>
+
+    <table class=" col-md-12 table table-bordered table-condensed table-hover ">
+
+        <tr class="tr5">
+            <td width="40%">Name of Supplies</td>
+            <td width="20%">Place Of Supplies</td>
+            <td width="20%">Total Taxable Value</td>
+            <td width="20%">Integrated Tax</td>
+        </tr>
+
+
+        <tr *ngFor="let item of gstr3b.unregistered ">
+            <td width="40%">Supplies made to Unregistered Persons</td>
+            
+            <td width="20%">{{getPlaceOfSupply(item.placeOfSupply)}}</td>
+            <td width="20%">{{item.totalTaxableValue | number:  '1.2-2'}}</td>
+            <td width="20%">{{item.igst | number:  '1.2-2'}}</td>
+        
+        </tr>
+
+        <tr *ngFor="let item of gstr3b.composite ">
+            <td width="40%">Supplies made to Composition Taxable Persons </td>
+            <td width="20%" >{{getPlaceOfSupply(item.placeOfSupply)}}</td>  
+            <td width="20%">{{item.totalTaxableValue | number:  '1.2-2'}}</td>
+            <td width="20%">{{item.igst | number:  '1.2-2'}}</td>
+        </tr>
+        <tr>
+            <td width="40%">Supplies made to UIN holders </td>
+            <td width="20%"></td>
+            <td width="20%"></td>
+            <td width="20%"></td>
+
+        </tr>
+    </table>
+
+    <br> <b> Eligible ITC</b>
+ 
+
+
+
+    <table class="table table-bordered table-condensed table-hover">
+
+
+
+        <tr class="tr5">
+            <td width="44%">Details</td>
+            <td width="14%">Integrated Tax</td>
+            <td width="14%">Central Tax</td>
+            <td width="14%">State/UT Tax</td>
+            <td width="14%">Cess</td>
+        </tr>
+
+
+      
+        <tr>
+            <td width="44%">(A) ITC available(whether in full or part) </td>
+            <td width="14%"></td>
+            <td width="14%"></td>
+            <td width="14%"></td>
+            <td width="14%"></td>
+
+        </tr>
+        <tr>
+            <td width="44%">(1)Import of Goods </td>
+            <td width="14%"></td>
+            <td width="14%"></td>
+            <td width="14%"></td>
+            <td width="14%"></td>
+
+        </tr>
+        <tr>
+            <td width="44%">(2)Import of Services </td>
+            <td width="14%"></td>
+            <td width="14%"></td>
+            <td width="14%"></td>
+            <td width="14%"></td>
+
+        </tr>
+        <tr>
+            <td width="44%">(3) Inward supplies liable to reverse charge (other than 1 & 2 above) </td>
+            <td width="14%"></td>
+            <td width="14%"></td>
+            <td width="14%"></td>
+            <td width="14%"></td>
+
+        </tr>
+
+        <tr>
+            <td width="44%">(4) Inward supplies from ISD</td>
+            <td width="14%"></td>
+            <td width="14%"></td>
+            <td width="14%"></td>
+            <td width="14%"></td>
+
+        </tr>
+        <tr>
+            <td width="44%">(5) All other ITC</td>
+            <td width="14%">{{gstr3b.allOtherItc.igst | number:  '1.2-2'}}</td>
+            <td width="14%">{{gstr3b.allOtherItc.cgst | number:  '1.2-2'}}</td>
+            <td width="14%">{{gstr3b.allOtherItc.sgst | number:  '1.2-2'}}</td>
+            <td width="14%">{{gstr3b.allOtherItc.cess | number:  '1.2-2'}}</td>
+
+        </tr>
+        <tr>
+            <td width="44%">(B) ITC Reversed</td>
+            <td width="14%"></td>
+            <td width="14%"></td>
+            <td width="14%"></td>
+            <td width="14%"></td>
+
+        </tr>
+        <tr>
+            <td width="44%">(1) As per rules 42 & 43 of CGST rules</td>
+            <td width="14%"></td>
+            <td width="14%"></td>
+            <td width="14%"></td>
+            <td width="14%"></td>
+
+        </tr>
+        <tr>
+            <td width="44%">(2) Others</td>
+            <td width="14%"></td>
+            <td width="14%"></td>
+            <td width="14%"></td>
+            <td width="14%"></td>
+
+        </tr>
+        <tr>
+            <td width="44%">(c) Net ITC available (A)-(B)</td>
+            <td width="14%"></td>
+            <td width="14%"></td>
+            <td width="14%"></td>
+            <td width="14%"></td>
+
+        </tr>
+        <tr>
+            <td width="44%">(d) Ineligible ITC</td>
+            <td width="14%"></td>
+            <td width="14%"></td>
+            <td width="14%"></td>
+            <td width="14%"></td>
+
+        </tr>
+        <tr>
+            <td width="44%">(1)As per section 17(5)</td>
+            <td width="14%"></td>
+            <td width="14%"></td>
+            <td width="14%"></td>
+            <td width="14%"></td>
+
+        </tr>
+        <tr>
+            <td width="44%">(2) Others</td>
+            <td width="14%"></td>
+            <td width="14%"></td>
+            <td width="14%"></td>
+            <td width="14%"></td>
+
+        </tr>
+    </table>
+
+    <br> <b>Values of Exempt Nil-rated and Non-GST inward supplies</b>
+
+    <table class=" col-md-12 table table-bordered table-condensed table-hover ">
+
+        <tr class="tr5">
+            <td width="60%">Nature of Supplies</td>
+            <td width="20%">Inter-State Supplies</td>
+            <td width="20%">Intra-State Supplies</td>
+                 </tr>
+
+        <tr>
+            <td width="60%">From a supplier under composition scheme, Exempt and Nil rated supply </td>
+            <td width="20%"></td>
+            <td width="20%"></td>
+         </tr>
+        <tr>
+            <td width="60%">Non Gst supply </td>
+            <td width="20%"></td>
+            <td width="20%"></td>
+         
+        </tr>
+    </table>
+</div>     
+
+
+
+
+

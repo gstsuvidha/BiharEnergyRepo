@@ -1,0 +1,234 @@
+
+  <p-fieldset legend="User Profile">
+    <form novalidate [formGroup]="userprofileForm">
+    <div class="ui-g">
+
+      <div class="ui-g-5" style="margin-top: 1px">
+        <label for="businessName">Name of business</label>
+      </div>
+
+      <div class="ui-g-7" style="margin-top: 1px">
+        <input type="text" pInputText formControlName="businessName" />
+        <br />
+        <div class="ui-message ui-messages-error ui-corner-all" *ngIf="userprofileForm.get('businessName').touched && userprofileForm.get('businessName').invalid" style="width:160px">
+          <div class="ui-message ui-messages-error ui-corner-all" *ngIf="userprofileForm.get('businessName').hasError('required')">
+            <i class="fa fa-fw fa-close"></i>
+            Business Name is required
+          </div>
+          <div class="ui-message ui-messages-error ui-corner-all" *ngIf="userprofileForm.get('businessName').hasError('minlength')">
+            <i class="fa fa-fw fa-close"></i>
+            Invalid Business Name
+          </div>
+          </div>
+      </div>
+
+      <div class="ui-g-5" style="margin-top: 1px">
+        <label for="Gstin">GSTIN</label>
+      </div>
+
+      <div class="ui-g-7" style="margin-top: 1px">
+        <input type="text" pInputText formControlName="gstin"/>
+        <br />
+        <div class="ui-message ui-messages-error ui-corner-all" *ngIf="userprofileForm.get('gstin').touched && userprofileForm.get('gstin').invalid" style="width:160px">
+          <div class="ui-message ui-messages-error ui-corner-all" *ngIf="userprofileForm.get('gstin').hasError('required')">
+            <i class="fa fa-fw fa-close"></i>
+            Gstin is required
+          </div>
+          <div class="ui-message ui-messages-error ui-corner-all" *ngIf="userprofileForm.get('gstin').hasError('pattern')">
+            <i class="fa fa-fw fa-close"></i>
+            Invalid Gstin
+          </div>
+          </div>
+      </div>
+
+      <div class="ui-g-5" style="margin-top: 1px">
+        <label for="Pan">Pan</label>
+      </div>
+
+      <div class="ui-g-7" style="margin-top: 1px">
+        <input type="text" pInputText formControlName="pan"/>
+      </div>
+
+      <div class="ui-g-5" style="margin-top: 1px">
+        <label for="registrationtype">Registration type</label>
+      </div>
+
+      <div class="ui-g-7" style="margin-top: 1px">
+        <p-dropdown [options]="registrationType" formControlName="registrationType"  placeholder="Select"  [style]="{'width':'160px'}" filter="true">
+          <ng-template let-option pTemplate="item">
+            <div translate>{{option.label}}</div>
+          </ng-template>
+        </p-dropdown>
+        <br />
+        <div class="ui-message ui-messages-error ui-corner-all" *ngIf="userprofileForm.get('registrationType').touched && userprofileForm.get('registrationType').invalid" style="width:160px">
+          <div class="ui-message ui-messages-error ui-corner-all" *ngIf="userprofileForm.get('registrationType').hasError('required')">
+            <i class="fa fa-fw fa-close"></i>
+            Registration Type is required
+          </div>
+         </div> 
+      </div>
+
+      <div class="ui-g-5" style="margin-top: 1px">
+        <label for="email">Email_id</label>
+      </div>
+
+      <div class="ui-g-7" style="margin-top: 1px">
+        <input type="text" pInputText formControlName="email"/>
+        <br />
+        <div class="ui-message ui-messages-error ui-corner-all" *ngIf="userprofileForm.get('email').touched && userprofileForm.get('email').invalid" style="width:160px">
+          <div class="ui-message ui-messages-error ui-corner-all" *ngIf="userprofileForm.get('email').hasError('required')">
+            <i class="fa fa-fw fa-close"></i>
+            Email is required
+          </div>
+          <div class="ui-message ui-messages-error ui-corner-all" *ngIf="userprofileForm.get('email').hasError('email')">
+            <i class="fa fa-fw fa-close"></i>
+            Invalid Email
+          </div>
+         </div> 
+      </div>
+
+      <div class="ui-g-5" style="margin-top: 1px">
+        <label for="invoicePrefix">Invoice Prefix</label>
+      </div>
+
+      <div class="ui-g-7" style="margin-top: 1px">
+        <input type="text" pInputText formControlName="invoicePrefix">
+      <!-- {{this.userprofile.invoicePrefix}} -->
+      </div>
+
+      <div class="ui-g-5" style="margin-top: 1px">
+        <label for="financialYear">Financial Year</label>
+      </div>
+
+      <div class="ui-g-7" style="margin-top: 1px">
+        <p-dropdown [options]="financialYearList" formControlName="selectedYear" placeholder="Select"  [style]="{'width':'160px'}" filter="true">
+          <ng-template let-option pTemplate="item">
+            <div translate>{{option.label}}</div>
+          </ng-template>
+        </p-dropdown> 
+        <br />
+        <div class="ui-message ui-messages-error ui-corner-all" *ngIf="userprofileForm.get('selectedYear').touched && userprofileForm.get('selectedYear').invalid" style="width:160px">
+          <div class="ui-message ui-messages-error ui-corner-all" *ngIf="userprofileForm.get('selectedYear').hasError('required')">
+            <i class="fa fa-fw fa-close"></i>
+            Financial Year is required
+          </div>
+          </div>
+      </div>
+
+      <div class="ui-g-5" style="margin-top: 1px">
+        <label for="contactNumber">Contact Number</label>
+      </div>
+      <div class="ui-g-7" style="margin-top: 1px">
+        <input type="text" pInputText formControlName="contactNumber" />
+        <br />
+        <div class="ui-message ui-messages-error ui-corner-all" *ngIf="userprofileForm.get('contactNumber').touched && userprofileForm.get('contactNumber').invalid" style="width:160px">
+          <div class="ui-message ui-messages-error ui-corner-all" *ngIf="userprofileForm.get('contactNumber').hasError('required')">
+            <i class="fa fa-fw fa-close"></i>
+            Field is required*
+          </div>
+          <div class="ui-message ui-messages-error ui-corner-all" *ngIf="userprofileForm.get('contactNumber').hasError('minlength') && !userprofileForm.get('contactNumber').hasError('pattern')">
+            <i class="fa fa-fw fa-close"></i>
+            Less than 10 Digits!
+          </div>
+          <div class="ui-message ui-messages-error ui-corner-all" *ngIf="userprofileForm.get('contactNumber').hasError('maxlength') && !userprofileForm.get('contactNumber').hasError('pattern')">
+            <i class="fa fa-fw fa-close"></i>
+            More than 10 Digits!
+          </div>
+          </div>
+      </div>
+
+      <div class="ui-g-5" style="margin-top: 1px">
+        <label for="Address">Address</label>
+      </div>
+      <div class="ui-g-7" style="margin-top: 1px">
+        <textarea rows="3" cols="20" formControlName="address" pInputTextarea></textarea>
+      </div>
+
+      <div class="ui-g-5" style="margin-top: 1px">
+        <label for="state">State</label>
+      </div>
+      <div class="ui-g-7" style="margin-top: 1px">
+        <p-dropdown [options]="stateList" formControlName="placeOfSupply" placeholder="Select A State"  [style]="{'width':'160px'}" filter="true">
+          <ng-template let-option pTemplate="item">
+            <div translate>{{option.label}}</div>
+          </ng-template>
+        </p-dropdown>
+      </div>
+
+      <div class="ui-g-5">
+        <label  for="Companies" style="margin-top: 1px">Company</label>
+      </div>
+      <div class="ui-g-7" style="margin-top: 1px">
+        <p-dropdown [options]="companySelectList"  formControlName="companyId"  placeholder="Select"  [style]="{'width':'160px'}" filter="true">
+          <ng-template let-option pTemplate="item">
+            <div translate>{{option.label}}</div>
+          </ng-template>
+        </p-dropdown>
+      </div>
+      
+  
+
+      <div class="ui-g-5"  style="margin-top: 1px">
+        <label for="Turnover for the previous year">Turnover for the previous year</label>
+      </div>
+      <div class="ui-g-7" style="margin-top: 1px">
+        <input type="text" pInputText formControlName="turnOver" />
+      </div>
+
+      <div class="ui-g-5" style="margin-top: 1px">
+        <label for="Turnover for the quarter">Turnover for the quarter</label>
+      </div>
+      <div class="ui-g-7" style="margin-top: 1px">
+        <input type="text" pInputText formControlName="currentGrossTurnOver"/>
+        <br />
+        <div class="ui-message ui-messages-error ui-corner-all" *ngIf="userprofileForm.get('currentGrossTurnOver').touched && userprofileForm.get('currentGrossTurnOver').invalid" style="width:160px">
+          <div class="ui-message ui-messages-error ui-corner-all" *ngIf="userprofileForm.get('currentGrossTurnOver').hasError('required')">
+            <i class="fa fa-fw fa-close"></i>
+            Turnover for the quarter is required
+          </div>
+          </div>
+      </div>
+
+      <div class="ui-g-5" style="margin-top: 1px">
+        <label for="bankName">Bank Name</label>
+      </div>
+      <div class="ui-g-7" style="margin-top: 1px">
+        <input type="text" pInputText formControlName="bankAccountName"/>
+      </div>
+
+      <div class="ui-g-5" style="margin-top: 1px">
+        <label for="Bank account number">Bank account number</label>
+      </div>
+      <div class="ui-g-7" style="margin-top: 1px">
+        <input type="text" pInputText formControlName="bankAccountNumber"/>
+      </div>
+
+      <div class="ui-g-5" style="margin-top: 1px">
+        <label for="IFSC code">IFSC code</label>
+      </div>
+      <div class="ui-g-7" style="margin-top: 1px">
+        <input type="text" pInputText formControlName="ifscCode" />
+      </div>
+
+      <div class="ui-g-5" style="margin-top: 1px">
+        <label for="Terms and condition">Terms and condition</label>
+      </div>
+      <div class="ui-g-7" style="margin-top: 1px">
+        <textarea rows="3" cols="20" formControlName="termsAndCondition" pInputTextarea></textarea>
+      </div>
+
+      <div class="ui-g-4"></div>
+      <div class="ui-g-1"  *ngIf="action=='edit'"  style="position:center">
+        <button pButton type="button" (click)="onSave()" [disabled]="userprofileForm.invalid" label="Save" class="ui-button-success"></button>
+      </div>
+      <div class="ui-g-1" *ngIf="action=='detail'">
+        
+        <button pButton type="button" label="Edit" class="ui-button-success" [routerLink]="['/authenticated/user-profile','edit']"></button>
+      </div>
+      <div class="ui-g-1">
+        <button pButton type="button" label="Back" class="ui-button-info" [routerLink]="['/authenticated/dash-board']"></button>
+      </div>
+    </div>
+  </form>
+  </p-fieldset>
+

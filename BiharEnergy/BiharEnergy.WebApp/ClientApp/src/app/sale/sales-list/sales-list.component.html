@@ -1,0 +1,134 @@
+
+<p-growl [value]="msgs"></p-growl> 
+<p-confirmDialog [(visible)]="displayDialogDelete"></p-confirmDialog>
+<h3>
+  Sales Invoice List
+</h3>
+
+
+<br />
+
+<table class="table2 table-condensed">
+    <thead class="row">
+      <tr>
+        <th class="th4" rowspan="2">Summary</th>
+        <th class="th3">Total Taxable Value</th>
+        <th class="th3">Total Tax Amount</th>
+        <th class="th3">Total IGST</th>
+        <th class="th3">Total CGST</th>
+        <th class="th3">Total SGST</th>
+        <th class="th3">Total CESS</th>
+      </tr>
+
+      <tr>
+        <td class="th3">{{totalTaxableValueSummary | number: '1.2-2'}}</td>
+        <td class="th3">{{totalTaxAmountSummary | number: '1.2-2'}}</td>
+        <td class="th3">{{totalIgstSummary | number: '1.2-2'}}</td>
+        <td class="th3">{{totalCgstSummary | number: '1.2-2'}}</td>
+        <td class="th3">{{totalSgstSummary | number: '1.2-2'}}</td>
+        <td class="th3">{{totalCessSummary | number: '1.2-2'}}</td>
+
+      </tr>
+    </thead>
+  </table>
+
+
+
+
+<!-- <div class="ui-g">
+  <div class="ui-g-6"></div>
+  <div class="ui-g-2" style="margin-bottom: 2px">
+      <p-radioButton name="filterInvoices" value="Option 1" label="All"  inputId="opt1" (onClick)="filterInvoicesRegisteredOrUnregistered(null)"></p-radioButton>
+  </div>
+  <div class="ui-g-2" style="margin-bottom: 2px">
+      <p-radioButton name="filterInvoices" value="Option 1" label="Registered"  inputId="opt1" (onClick)="filterInvoicesRegisteredOrUnregistered(true)"></p-radioButton>
+  </div>
+  <div class="ui-g-2" style="margin-bottom: 2px">
+      <p-radioButton name="filterInvoices" value="Option 1" label="UnRegistered"  inputId="opt1" (onClick)="filterInvoicesRegisteredOrUnregistered(false)"></p-radioButton>
+  </div>
+</div> -->
+
+<br />
+<div class="ui-g">
+  <div class="ui-g-9"></div>
+  <div class="ui-g-1">
+    <label style="margin-top:6px;">Year</label>
+  </div>
+  <div class="ui-g-2">
+    <label style="margin-top:6px;">{{yearDisplay}}</label>
+  </div>
+</div>
+
+<div class="ui-g">
+    <div class="ui-g-9"></div>
+    <div class="ui-g-1">
+      <label style="margin-top:6px;">Month</label>
+    </div>
+    <div class="ui-g-2">
+      <p-dropdown [options]="month" [ngModel]="selectedMonth" (ngModelChange)="getSalesInvoicesForSelectedMonth($event)"  placeholder="Select A Month"  [style]="{'width':'160px'}" filter="true">
+        <ng-template let-option pTemplate="item">
+          <div translate>{{option.label}}</div>
+        </ng-template>
+      </p-dropdown>
+    </div>
+    
+</div>
+
+<p-table #dt  [value]="salesList" selectionMode="single" [(selection)]="selectedSales" (onRowSelect)="onRowSelect($event)"
+[paginator]="true" rows="50" [resizableColumns]="true" [scrollable]="true" scrollHeight="200px" [globalFilterFields]="['customer.name','invoiceNumber']">
+
+  <ng-template pTemplate="caption">
+    <div style="text-align:left">
+      <button type="button" pButton icon="fa fa-fw fa-plus" label="Add" (click)="showDialogToAdd()"></button>
+    </div>
+    <div style="text-align: right">        
+      <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+      <input type="text" pInputText size="30" placeholder="Global Filter" (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+  </div>
+  </ng-template>
+
+  <!-- <ng-template pTemplate="header" let-columns>
+    <tr>
+        <th *ngFor="let col of columns">
+            {{col.header}}
+        </th>
+    </tr>
+</ng-template>
+
+<ng-template pTemplate="body" let-rowData let-columns="columns" let-rowIndex="rowIndex">
+  <tr [pSelectableRow]="rowData" [pSelectableRowIndex]="rowIndex">
+      <td *ngFor="let col of columns">
+              {{rowData[col.field]}}
+      </td>
+  </tr>
+</ng-template> -->
+
+  <ng-template pTemplate="header">
+    <tr>
+      <th style="width:5%">S.No.</th>
+      <th style="width:10%">Date</th>
+      <th style="width:13%">Invoice No.</th>
+      <th style="width:15%">Customer</th>
+      <th style="width:15%">Total Taxable Value</th>
+      <th style="width:15%">Total Tax Amount</th>
+      <th style="width:15%">Total Invoice Value</th>
+      <th style="width:6%">Print</th>
+      <th style="width:6%">Delete</th>
+    </tr>
+  </ng-template> 
+
+   <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex" >
+    <tr [pSelectableRow]="rowData">
+      <td style="width:5%">{{rowIndex + 1 }}</td>
+      <td style="width:10%">{{rowData.date | date: 'dd/MM/yyyy'}}</td>
+      <td style="width:13%">{{rowData.invoicePrefix}}-{{rowData.invoiceNumber}}</td>
+      <td style="width:15%">{{rowData.customer.name}}</td>
+      <td style="width:15%">{{rowData.totalTaxableValue | number: '1.2-2'}}</td>
+      <td style="width:15%">{{rowData.totalTaxAmount | number: '1.2-2'}}</td>
+      <td style="width:15%">{{rowData.totalInvoiceValue | number: '1.0-0'}}</td>
+      <td style="width:6%"> <a [routerLink]="[rowData.id,'print']"><i class="fa fa-print"></i></a></td>
+      <td style="width:6%"><button type="button" pButton icon="fa fa-fw fa-trash" (click)="showDialogToDelete(rowData)"></button></td>
+  </tr>    
+  </ng-template>
+
+</p-table>

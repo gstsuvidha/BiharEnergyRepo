@@ -1,0 +1,38 @@
+[
+  {
+    "id": 3,
+    "customerOpeningDate": "2014-01-01T23:28:56.782Z",
+    "name": "Akash Agarwal",
+    "gstin": "A45SA2AS25ASA2",
+    "address": "Nala Road",
+    "state": "Bihar",
+    "contactNumber": "7004526875",
+    "registrationType": 0,
+    "openBalance": "10000",
+    "isActive": "true",
+    "accountingUnitId": "1" 
+  },
+  {
+    "id": 4,
+      "name": "Navneet Kumar",
+    "gstin": "SAVD2D2R5T5ASA2",
+    "address": "Income Tax Chauraha",
+    "state": "Bihar",
+    "contactNumber": "7856988587",
+    "registrationType": 0,
+       "isActive": "true",
+    "accountingUnitId": "1"
+
+  },
+  {
+    "id": 5,
+       "name": "Vishal Rathore",
+    "gstin": "A45SA2AS25ASA2",
+    "address": "KankarBagh",
+    "state": "Bihar",
+    "contactNumber": "7979036375",
+    "registrationType": 0,
+       "isActive": "true",
+    "accountingUnitId": "1"
+
+  }]

@@ -1,0 +1,28 @@
+[
+    {
+        "id" : 1,
+        "name" : "Trishan Ghosh",
+        "businessName" : "Random",
+        "subject" : "ab",
+        "gstinPassword" : "abc",
+        "authorizedRepresentativeName" : "Abcd",
+        "contact" : "we",
+        "lastGrossTurnover" : "56",
+        "currentGrossTurnover" : "23",
+        "address" : "Janak Kishore Road",
+        "gstin" : "A45SA2AS25ASA2",
+        "contactNumber" : "9421545520",
+        "turnOver" : "5000",
+        "ifscCode" : "56sc",
+        "registrationType" : "1",
+        "termsAndCondition" : "adadsbaj",
+        "bankAccountName" : "adds",
+        "bankAccountNumber" : "21309130",
+        "email" : "abc@email.com",
+        "placeOfSupply" : "Bihar",
+        "imgUrl" : "",
+        "inventorySelection" : "false",
+        "selectedYear" : 2018,
+        "companyId" : 1
+    }
+]

@@ -1,0 +1,61 @@
+<app-navbar></app-navbar>
+
+<div class="col-md-2">
+  <app-consolidated-sidebar></app-consolidated-sidebar>
+</div>
+<div class="col-md-10">
+
+
+   <br /><br /><br /><br />
+
+    <div class="col-md-12 heading"> Credit/Debit Note Registered Details Summary</div>
+    <div class="invoice_table_background_box">
+        <table class="table table-bordered text">
+
+
+            <thead>
+                <tr style="background-color:#f4f4f6">
+
+                    <td> GSTIN/UIN of Recipient</td>
+                    <td> Invoice/Advance Receipt Number</td>
+                    <td> Invoice/Advance Receipt date</td>
+                    <td> Note/Refund Voucher Number	</td>
+                    <td> Note/Refund Voucher date </td>
+                    <td> Document Type </td>
+                    <td> Reason for Issuing Document</td>
+                    <td> Place Of Supply</td>
+                    <td> Note/Refund Voucher Value </td>
+                    <td> Rate</td>
+                    <td> Taxable Value	</td>
+                    <td> Cess Amount	</td>
+                    <td>Pre Gst</td>
+
+
+
+                </tr>
+            </thead>
+
+            <tbody *ngFor="let cust of gstr1CreditDebitNoteRegisteredList">
+                <ng-container *ngFor="let note of cust.nt">
+                        <tr *ngFor="let item of note.itms">
+                                <td>{{cust.ctin}}</td>
+                                <td>{{note.inum}}</td>
+                                <td>{{note.idt}}</td>
+                                <td>{{note.nt_num}}</td>
+                                <td>{{note.nt_dt}}</td>
+                                <td *ngIf="note.ntty=='Credit'">C</td>
+                                <td *ngIf="note.ntty=='Debit'">D</td>
+                                <td>{{note.rsn}}</td>
+                                <td><p *ngFor="let pos of placeOfSupply"><label class="label_normal" *ngIf="note.inum==pos.inum">{{pos.pos}}-{{getPlaceOfSupply(pos.pos)}}</label></p></td>
+                                <td>{{note.val | number  : '1.2-2'}}</td>
+                                <td>{{item.itm_det.rt | number  : '1.2-2'}}</td>
+                                <td>{{item.itm_det.txval | number  : '1.2-2'}}</td>
+                                <td>{{item.itm_det.csamt | number  : '1.2-2'}}</td>
+                                <td *ngIf="note.p_gst=='No'">N</td>
+                           </tr>
+                    </ng-container>
+              
+        </tbody> 
+        </table>
+    </div>
+</div>

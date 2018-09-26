@@ -1,0 +1,200 @@
+
+<p-growl>[(value)]="msgs"></p-growl>
+
+
+  
+    
+  
+  
+      
+  
+    
+<form [formGroup]="productForm" (ngSubmit)="saveProduct()">
+
+  <p-dialog header="{{pageTitle}}" 
+          [(visible)]="displayDialog" 
+          [responsive]="true" 
+          showEffect="fade" 
+          [modal]="true" 
+          [closable]="true" 
+          (onHide) = "this.closeDialog.emit(null)"
+          [width]="500" >
+    <div class="ui-g">
+      
+
+
+        <div class="ui-g-5">
+       <label style="margin-top:5px;" for="name" autofocus>Item/Service Name</label>
+      </div>
+        <div class="ui-g-7">
+          <input pInputText type="name" id="name" formControlName="name" style="width:160px">
+          <div class="ui-message ui-messages-error ui-corner-all" *ngIf="productForm.get('name').touched && productForm.get('name').invalid" style="width:160px">
+            <div class="ui-message ui-messages-error ui-corner-all" *ngIf="productForm.get('name').hasError('required')">
+              <i class="fa fa-fw fa-close"></i>
+              Product Name is required
+            </div>
+          </div>
+        </div>
+        
+        <div class="ui-g-5">
+       <label style="margin-top:5px;" for="description" autofocus>Description</label>
+      </div>
+        <div class="ui-g-7">
+          <input pInputText type="description" id="description" formControlName="description" style="width:160px">
+         </div>
+
+
+         <div class="ui-g-5">
+           <label for="unit">Unit</label>
+         </div>
+
+         <div class="ui-g-7">
+            <p-dropdown [options]="unitList"  formControlName="unit"  placeholder="Select"  [style]="{'width':'160px'}" filter="true">
+                <ng-template let-option pTemplate="item">
+                  <div translate>{{option.label}}</div>
+                </ng-template>
+              </p-dropdown>
+              <div class="ui-message ui-messages-error ui-corner-all" *ngIf="productForm.get('unit').touched && productForm.get('unit').invalid" style="width:160px">
+                <div class="ui-message ui-messages-error ui-corner-all" *ngIf="productForm.get('unit').hasError('required')">
+                  <i class="fa fa-fw fa-close"></i>
+                  Unit is required
+                </div>
+               </div> 
+         </div>
+            
+          <div class="ui-g-5" *ngIf="productForm.get('unit').value=='OTH-OTHERS'">
+         <label style="margin-top:5px;" for="unitOthers" >Specify</label>
+        </div>
+
+         <div *ngIf="productForm.get('unit').value=='OTH-OTHERS'" class="ui-g-7"> 
+          <input pInputText type="text" formControlName="unitOthers"  id="unitOthers" autofocus>
+        </div> 
+
+        <div class="ui-g-5">
+            <label style="margin-top:5px;" for="rate">Price</label>
+        </div> 
+        <div class="ui-g-7">
+            <input pInputText type="text" formControlName="rate" onlyNumber="true" id="rate" style="width:160px">
+            <div class="ui-message ui-messages-error ui-corner-all" *ngIf="productForm.get('rate').touched && productForm.get('rate').invalid" style="width:160px">
+              <div class="ui-message ui-messages-error ui-corner-all" *ngIf="productForm.get('rate').hasError('required')">
+                <i class="fa fa-fw fa-close"></i>
+                Rate is required
+              </div>
+              </div>
+       </div>         
+       
+       <div class="ui-g-5">
+          <label style="margin-top:5px;" style="margin-top:5px;" for="hsnCode" >HSN/SAC Code</label>
+       </div>
+       <div class="ui-g-7">
+          <input pInputText type="text" id="hsnCode" formControlName="hsnSacCode" onlyNumber style="width:160px">
+       </div>
+
+       <div class="ui-g-5">
+        <label style="margin-top:5px;" for="category" >Category</label>
+       </div>
+
+       <div class="ui-g-7">
+        <p-dropdown [options]="category"  formControlName="productType"  placeholder="Select"  [style]="{'width':'160px'}" filter="true">
+          <ng-template let-option pTemplate="item">
+            <div translate>{{option.label}}</div>
+          </ng-template>
+        </p-dropdown>
+        <div class="ui-message ui-messages-error ui-corner-all" *ngIf="productForm.get('productType').touched && productForm.get('productType').invalid" style="width:160px">
+          <div class="ui-message ui-messages-error ui-corner-all" *ngIf="productForm.get('productType').hasError('required')">
+            <i class="fa fa-fw fa-close"></i>
+            Product Type is required
+          </div>
+          </div>
+       </div>
+
+       <div class="ui-g-5">
+        <label style="margin-top:5px;" for="igst">Rate Of Tax %</label>
+       </div>
+
+       <div class="ui-g-7">
+        <input pInputText type="text" id="igst" formControlName="igst" onlyNumber="true" style="width:160px"> 
+        <div class="ui-message ui-messages-error ui-corner-all" *ngIf="productForm.get('igst').touched && productForm.get('igst').invalid" style="width:160px">
+          <div class="ui-message ui-messages-error ui-corner-all" *ngIf="productForm.get('igst').hasError('required')">
+            <i class="fa fa-fw fa-close"></i>
+            Igst is required
+          </div>
+          </div>
+      </div>
+
+       <div class="ui-g-5">
+        <label style="margin-top:5px;" for="cess">CESS%</label>
+       </div>
+
+       <div class="ui-g-7">
+        <input pInputText type="text" id="cess" formControlName="cess" onlyNumber="true" style="width:160px">
+      </div>
+    
+    <div class="ui-g-5">
+        <label style="margin-top:5px;" for="itcPercentage">% ITC</label>
+       </div>
+
+       <div class="ui-g-7">
+        <input  pInputText type="text" id="itcPercentage" formControlName="itcPercentage"  onlyNumber="true" style="width:160px">
+      </div>
+    
+     
+      <div class="ui-g-5">
+        <label style="margin-top:5px;" for="itcEligibility" >ITC Eligibility</label>
+       </div>
+
+      <div class="ui-g-7">
+        <p-dropdown [options]="itcEligibility"  formControlName="itcEligibility"  (onChange) ="itcNotEligible($event)" placeholder="Select"  [style]="{'width':'160px'}" filter="true">
+          <ng-template let-option pTemplate="item">
+            <div translate>{{option.label}}</div>
+          </ng-template>
+        </p-dropdown>
+        </div>
+
+
+    <div class="ui-g">
+
+      
+        <!-- <div class="ui-g-12"><p-checkbox name="isReverseChargeApplicable" label="isReverseChargeApplicable" formControlName="isReverseChargeApplicable" binary="true"></p-checkbox></div> -->
+        <div class="ui-g-4" style="width:300px;margin-bottom:10px"><p-checkbox name="isTaxIncluded"  label="isTaxIncluded" formControlName="isTaxIncluded" binary="true"></p-checkbox></div>
+      
+ 
+    
+             <!-- <div class="ui-g-12"><p-checkbox name="isReverseChargeApplicable" label="isReverseChargeApplicable" formControlName="isReverseChargeApplicable" binary="true"></p-checkbox></div> -->
+        <div class="ui-g-4" style="width:300px;margin-bottom:10px"><p-checkbox name="isSaleable"  label="Is Saleable" formControlName="isSaleable" binary="true"></p-checkbox></div>
+      
+ 
+    
+      
+        <!-- <div class="ui-g-12"><p-checkbox name="isReverseChargeApplicable" label="isReverseChargeApplicable" formControlName="isReverseChargeApplicable" binary="true"></p-checkbox></div> -->
+        <div class="ui-g-4" style="width:300px;margin-bottom:10px"><p-checkbox name="isPurchaseable"  label="Is Purchaseable" formControlName="isPurchaseable" binary="true"></p-checkbox></div>
+      
+ 
+    </div>
+    
+    
+    <!-- <pre> {{productForm.value | json}}</pre> -->
+    <p-footer>
+      <div class="ui-dialog-buttonpane ui-helper-clearfix">
+          <button type="button" pButton icon="fa fa-fw fa-check" (click)="saveProduct()" (onclick)="disable()" [disabled]="productForm.invalid" label="Save"></button>
+      </div>
+  </p-footer>
+
+</div>
+</p-dialog>
+
+  
+
+ 
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+

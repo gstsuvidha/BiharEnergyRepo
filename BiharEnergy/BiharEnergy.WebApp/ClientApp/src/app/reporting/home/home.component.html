@@ -1,0 +1,61 @@
+<br />
+<br />
+<br />
+<div class="ui-g">
+  <div class="ui-g-8"></div>
+  <div class="ui-g-2">
+    <label style="margin-top:6px;">Selected Month:-</label>
+    </div>
+    <div class="ui-g-2">
+      <p-dropdown [options]="month" [ngModel]="selectedMonth" (ngModelChange)="getReportingForSelectedMonth($event)" placeholder="Select A Month"  [style]="{'width':'160px'}" filter="true">
+        <ng-template let-option pTemplate="item">
+          <div translate>{{option.label}}</div>
+        </ng-template>
+      </p-dropdown>
+  </div>
+</div>
+<br />
+<div class = "ui-g-fluid">
+  
+  <div class = "ui-g-4"></div>
+  
+  <div class = "ui-g-8">
+    <h1>
+      Welcome to GST Reporting of Bihar Energy
+    </h1>
+    <br />
+    <br />
+    
+    <div class = "ui-g-4">
+      <label for="company" style="margin-top:2px">Select Company</label>
+    </div>
+    
+    <div class = "ui-g-8" style="margin-bottom:2px">
+      <p-dropdown [options]="companySelectList" [(ngModel)]="company" placeholder="Select"  [style]="{'width':'160px'}" filter="true">
+        <ng-template let-option pTemplate="item">
+          <div translate>{{option.label}}</div>
+        </ng-template>
+      </p-dropdown>
+    </div>
+    
+    <div class="ui-g-4">
+      <label for="period" style="margin-top:2px">Period Of Return</label>
+    </div>
+    
+    
+    <div class = "ui-g-8" style="margin-bottom:2px">
+      <p-dropdown [options]="financialYearList" [(ngModel)]="financialYear"  placeholder="Select"  [style]="{'width':'160px'}" filter="true">
+        <ng-template let-option pTemplate="item">
+          <div translate>{{option.label}}</div>
+        </ng-template>
+      </p-dropdown> 
+    </div>
+    
+    <div class = "ui-g-2"></div>
+    
+    <div class="ui-g-10">
+      <button pButton type="button" [routerLink]="['/reporting',selectedMonth,financialYear,company,'consolidated']" label="Dashboard" class="ui-button-success"></button>
+    
+    </div>
+  </div>
+</div>

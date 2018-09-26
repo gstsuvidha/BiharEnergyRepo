@@ -1,0 +1,42 @@
+[
+    {
+        "id" : 1,
+        "date" : "2018-06-07T16:04:20+0100",
+        "invoicePrefix" : "",
+        "isReverseChargeApplicable" : false,
+        "customerId" : 3,
+        "accountId" : 1,
+        "customerName" : "Raj",
+        "billingAddress" : "Kadam Kuan",
+        "etin"  : "A",
+        "placeOfSupply" : "Bihar",
+        "isPlaceOfSupplyDifferent" : true,
+        "shippingAddress" : "Bihar",
+        "shippingDate" : "2018-06-07T15:20:56.782Z",
+        "receivedAmount" : 1500,
+        "reference" : "AHA",
+        "freight" : 100,
+        "insurance" : 1000,
+        "packingFwdChrg" : 100,
+        "totalTaxableValue" : 1000,
+        "totalTaxAmount" : 100,
+        "totalCessAmount" : 1000,
+        "totalInvoiceValue" : 10000,
+        "modeOfPayment" : "cash",
+        "isActive" : "true",
+        "accountingUnitId" : 1,
+        "salesInvoiceItems" : [{
+            "productId" : 1,
+            "quantity"  : 10,
+            "unitPrice" : 100,
+            "discount"  : 10,
+            "taxRate"   : 10, 
+            "taxableValue" : 100,
+            "taxAmount" : 100,
+            "cess"      : 10, 
+            "total"     : 1000
+    
+        }]
+
+    }
+]    

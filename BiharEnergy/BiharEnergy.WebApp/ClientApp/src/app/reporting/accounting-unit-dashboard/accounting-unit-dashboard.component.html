@@ -1,0 +1,35 @@
+<app-navbar></app-navbar>
+<br />
+<br />
+<br />
+
+<div class ="ui-g-fluid">
+
+    <div class = "ui-g-4"></div>
+    
+    <div class = "ui-g-8">
+        
+        <div class = "ui-g-4">
+            <label for="accounting">Select Accounting Unit</label>
+        </div>
+        
+        <div class="ui-g-8">
+            <p-dropdown [options]="accountingUnitSelectList" [ngModel]="accountingUnitId" placeholder="Select" (ngModelChange) = "getSelectedAccountingUnit($event)"   [style]="{'width':'160px'}" filter="true">
+                <ng-template let-option pTemplate="item">
+                  <div translate>{{option.label}}</div>
+                </ng-template>
+              </p-dropdown>
+        </div>
+        
+        <div class ="ui-g-4"></div>
+        
+        <div class ="ui-g-8"></div>
+        
+        <div class="ui-g-2"></div>
+        
+        <div class="ui-g-10">
+            <button pButton type="button" label=" Go to AU Dashboard" [routerLink]="['/reporting',selectedMonth,financialYear,companyId,accountingUnitId,'accounting-unit']" class="ui-button-success"></button>
+        </div>
+    
+    </div>
+</div>

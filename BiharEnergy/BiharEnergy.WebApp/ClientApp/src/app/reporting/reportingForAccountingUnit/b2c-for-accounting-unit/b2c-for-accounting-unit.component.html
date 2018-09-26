@@ -1,0 +1,104 @@
+<div class="col-md-2">
+  <app-sidebar-for-accounting-unit></app-sidebar-for-accounting-unit>
+</div>
+<div class="col-md-10">
+   
+    
+    <br /><br /><br /><br/>
+   
+        <div class="col-md-12 heading" >B2C Details Summary</div>
+    <div class="invoice_table_background_box">
+        <table class="table table-bordered text">
+
+
+            <thead style="background-color:#f4f4f6">
+                <tr>
+                  
+                    <td width="16%">
+
+                        Type
+
+                    </td>
+
+
+                    <td width="16%">
+
+                        Place Of Supply
+
+                    </td>
+
+
+                    <td width="16%">
+
+                        Rate 
+
+                    </td>
+
+
+                    <td width="16%">
+                        Taxable Value
+
+                    </td>
+
+                    
+                    <td width="16%">
+                        Cess Amount
+
+                    </td>
+
+
+                    <td width="16%">
+                        E-Commerce GSTIN
+
+                    </td>
+
+
+
+                </tr>
+            </thead>
+
+            <tbody *ngFor="let cust of gstr1B2CList">
+
+                <tr>
+                  
+                    <td>
+
+                        OE
+
+                   </td>
+
+                    <td >
+
+                   {{cust.pos}}-{{getPlaceOfSupply(cust.pos)}} 
+                      
+
+                    </td>
+
+
+                    <td>
+
+                        {{cust.rt | number  : '1.2-2'}}
+
+                    </td>
+                    
+                   
+                    
+                    <td>
+                        {{cust.txval | number  : '1.2-2'}}
+                   </td>
+
+
+                    <td>
+                        {{cust.csamt| number  : '1.2-2'}}
+
+                    </td>
+
+                    <td></td>
+
+                </tr>
+            </tbody>
+
+
+        </table>
+    </div>
+</div>

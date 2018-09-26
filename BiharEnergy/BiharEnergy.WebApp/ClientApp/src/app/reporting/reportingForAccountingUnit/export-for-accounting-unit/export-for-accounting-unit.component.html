@@ -1,0 +1,54 @@
+<div class="col-md-2">
+  <app-sidebar-for-accounting-unit></app-sidebar-for-accounting-unit>
+</div>
+<div class="col-md-10">
+
+
+    <br /><br /><br /><br />
+
+    <div class="col-md-12 heading"> Export Invoice Details Summary</div>
+    <div class="invoice_table_background_box">
+        <table class="table table-bordered text">
+
+
+            <thead>
+                <tr style="background-color:#f4f4f6">
+
+                    <td width="14%"> InvoiceNumber </td>
+
+                    <td width="14%"> InvoiceDate	</td>
+                   
+                    <td width="14%">ShippingDate  </td>
+                    <td width="14%">ShippingBillNumber </td>
+                    <td width="14%">PortCode</td>
+
+                    <td width="14%"> Rate</td>
+                    <td width="14%"> Taxable Value	</td>
+                 
+
+
+
+                </tr>
+            </thead>
+
+            <tbody *ngFor="let exp of gstr1ExportReportDetailList">
+                
+                    <tr *ngFor="let item of exp.inv.itms">
+
+                        <td > {{exp.inv.inum}} </td>
+
+                        <td > {{exp.inv.idt}}	</td>
+                       
+                        <td >{{exp.inv.sbdt}} </td>
+                        <td >{{exp.inv.sbnum}}</td>
+                        <td >{{exp.inv.sbpcode}}</td>
+
+                        <td > {{item.itm_det.rt}}</td>
+                        <td > {{item.itm_det.txval| number : '1.2-2'}}	</td>
+
+                    </tr>
+
+        </table>
+    </div>
+</div>
+

@@ -1,0 +1,32 @@
+pre {
+    border-color: white;
+    color: black;
+    margin-top: 10px;
+    border: none;
+    height: auto;
+}
+
+
+
+/* font size for all text in a html page*/
+
+.text {
+    font-size: 12px;
+}
+
+
+
+/*detail summary heading box */
+.heading {
+    color: #000;
+    font-size: 16px;
+    font-family: Calibri;
+}
+
+
+
+/*fixing invoice table size */
+.invoice_table_background_box {
+    height: auto;
+    width: 1107px;
+}

@@ -1,0 +1,141 @@
+
+<p-growl>[(value)]="msgs"></p-growl>
+
+
+  
+    
+  
+  
+      
+  
+    
+    <form [formGroup]="customerForm" (ngSubmit)="saveCustomer()">
+  
+      <p-dialog header="{{pageTitle}}" 
+              [(visible)]="displayDialog" 
+              [responsive]="true" 
+              showEffect="fade" 
+              [modal]="true" 
+              [closable]="true" 
+              (onHide) = "this.closeDialog.emit(null)"
+              [width]="500" >
+        <div class="ui-g">
+          
+  
+  
+            <div class="ui-g-5">
+           <label style="margin-top:5px;" for="name" autofocus>Name</label>
+          </div>
+            <div class="ui-g-7">
+              <input pInputText type="name" id="name" formControlName="name" style="width:160px">
+              <div class="ui-message ui-messages-error ui-corner-all" *ngIf="customerForm.get('name').touched && customerForm.get('name').invalid" style="width:160px">
+                <div class="ui-message ui-messages-error ui-corner-all" *ngIf="customerForm.get('name').hasError('required')">
+                  <i class="fa fa-fw fa-close"></i>
+                  Customer Name is required
+                </div>
+                <div class="ui-message ui-messages-error ui-corner-all" *ngIf="customerForm.get('name').hasError('minlength')">
+                  <i class="fa fa-fw fa-close"></i>
+                  Invalid Customer Name
+                </div>
+              </div>
+            </div>
+
+            <div class="ui-g-5">
+              <label style="margin-top:5px;" for="registrationType">Registration Type</label>
+              </div>
+              <div class="ui-g-7">
+                  <p-dropdown [options]="registrationType"  formControlName="registrationType"  placeholder="Select"  [style]="{'width':'160px'}" filter="true" (onChange) ="checkRegistrationType()">
+                      <ng-template let-option pTemplate="item">
+                        <div translate>{{option.label}}</div>
+                      </ng-template>
+                    </p-dropdown>
+              </div> 
+        
+              
+              <div class="ui-g-5" *ngIf="customerForm.get('registrationType').value!='1'">
+                  <label style="margin-top:5px;" for="gstIn" >GSTIN</label>
+              </div>
+              <div class="ui-g-7" *ngIf="customerForm.get('registrationType').value!='1'">
+                  <input pInputText type="text"  id="gstIn" formControlName="gstin" style="width:160px">
+                  <div class="ui-message ui-messages-error ui-corner-all" *ngIf="customerForm.get('gstin').touched && customerForm.get('gstin').invalid" style="width:160px">
+                    <div class="ui-message ui-messages-error ui-corner-all" *ngIf="customerForm.get('gstin').hasError('required')">
+                      <i class="fa fa-fw fa-close"></i>
+                      Gstin is required
+                    </div>
+                    <div class="ui-message ui-messages-error ui-corner-all" *ngIf="customerForm.get('gstin').hasError('pattern')">
+                      <i class="fa fa-fw fa-close"></i>
+                      Invalid Gstin
+                    </div>
+                  </div>
+              </div>
+            
+  
+  
+            
+  
+            <div class="ui-g-5">
+            <label style="margin-top:5px;" for="address">Address</label>
+            </div>
+            <div class="ui-g-7">
+              <input pInputText type="text" id="address" formControlName="address" style="width:160px">
+               <div class="ui-message ui-messages-error ui-corner-all" *ngIf="customerForm.get('address').touched && customerForm.get('address').invalid" style="width:160px">
+                <div class="ui-message ui-messages-error ui-corner-all" *ngIf="customerForm.get('address').hasError('required')">
+                  <i class="fa fa-fw fa-close"></i>
+                   Address is required
+                </div>
+                <div class="ui-message ui-messages-error ui-corner-all" *ngIf="customerForm.get('address').hasError('minlength')">
+                  <i class="fa fa-fw fa-close"></i>
+                  Invalid Address
+                </div>
+              </div>
+              </div>
+  
+              <div class="ui-g-5">
+               <label style="margin-top:5px;" for="state">State</label>
+             </div>
+             <div class="ui-g-7">
+    
+              <p-dropdown [options]="stateList"  formControlName="state" placeholder="Select A State"  [style]="{'width':'160px'}" filter="true">
+                <ng-template let-option pTemplate="item">
+                  <div translate>{{option.label}}</div>
+                </ng-template>
+              </p-dropdown>
+              <div class="ui-message ui-messages-error ui-corner-all" *ngIf="customerForm.get('state').touched && customerForm.get('state').hasError('required')" style="width:160px">
+                <i class="fa fa-fw fa-close"></i>
+                Field is required*
+              </div>
+              </div>
+        
+  
+  
+  
+  
+  
+            <div class="ui-g-5">
+            <label style="margin-top:5px;"  for="contact">Contact Number</label>
+            </div>
+            <div class="ui-g-7">
+              <input pInputText type="text"  id="contact" formControlName="contactNumber" style="width:160px" onlyNumber="true">
+              
+            </div>
+
+            <div class="ui-g-5">
+              <label style="margin-top:5px;"  for="email">Email</label>
+              </div>
+              <div class="ui-g-7">
+                <input pInputText type="text"  id="email" formControlName="email" style="width:160px">
+                
+              </div>
+
+        </div>
+        <!-- <pre>{{customerForm.value | json}} </pre> -->
+        <p-footer>
+          <div class="ui-dialog-buttonpane ui-helper-clearfix">
+              <button type="button" pButton icon="fa fa-fw fa-check" (click)="saveCustomer()" (onclick)="disable()" [disabled]="customerForm.invalid"label="Save"></button>
+          </div>
+      </p-footer>
+      </p-dialog>
+      
+    </form>
+  
+  

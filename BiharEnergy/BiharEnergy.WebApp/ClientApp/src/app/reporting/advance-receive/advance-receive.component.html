@@ -1,0 +1,51 @@
+<app-navbar></app-navbar>
+
+<div class="col-md-2">
+  <app-consolidated-sidebar></app-consolidated-sidebar>
+</div>
+<div class="col-md-10">
+
+
+
+    <br /><br /><br /><br />
+    <div class="col-md-12 heading">Advance Receive Details Summary</div>
+    <div class="invoice_table_background_box">
+        <table class="table table-bordered text">
+            <thead style="background-color:#f4f4f6">
+                <tr>
+                    <td width="8">Place of supply</td>
+                    <td width="8">Rate</td>
+                    <td width="8">Gross Advance Received</td>
+                    
+                    <td width="8">Cess Amount</td>
+                </tr>
+            </thead>
+
+            
+
+            <tbody *ngFor="let cus of gstr1AdvanceReceiveList">
+                
+                    <tr *ngFor="let item of cus.itms">
+
+                        <td width="8">
+                          {{cus.pos}}-{{getPlaceOfSupply(cus.pos)}}
+                        </td>
+                        <td width="8">
+                            {{item.itm_det.rt | number  : '1.2-2'}}
+                        </td>
+                        <td width="8">
+                            {{item.itm_det.ad_amt| number  : '1.2-2'}}
+                        </td>
+
+                        <td width="8">
+
+                        {{item.itm_det.csamt | number  : '1.2-2'}}
+                        </td>
+                    </tr>
+              
+            </tbody>
+        </table>
+    </div>
+</div>
+
+

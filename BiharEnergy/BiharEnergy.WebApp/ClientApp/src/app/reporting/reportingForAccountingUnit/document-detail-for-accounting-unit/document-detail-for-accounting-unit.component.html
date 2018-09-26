@@ -1,0 +1,38 @@
+<div class="col-md-2">
+  <app-sidebar-for-accounting-unit></app-sidebar-for-accounting-unit>
+</div>
+<div class="col-md-10">
+
+
+
+    <br /><br /><br /><br />
+    <div class="col-md-12 heading">Document Details Summary</div>
+    <div class="invoice_table_background_box">
+        <table class="table table-bordered text">
+            <thead style="background-color:#f4f4f6">
+                <tr>
+                   <td>From</td>
+                    <td>To</td>
+                    <td>Totnum</td>
+                    <td>Cancel</td>
+                    <td>NetIssue</td>
+                </tr>
+            </thead>
+
+
+
+            <tbody *ngFor="let doc of gstr1DocumentDetailList">
+              
+                <tr>
+                    <td width="20%">{{doc.docDet.docs.from}}</td>
+                    <td width="20%">{{doc.docDet.docs.to}}</td>
+                    <td width="20%">{{doc.docDet.docs.totnum}}</td>
+                    <td width="20%">{{doc.docDet.docs.cancel}}</td>
+                    <td width="20%">{{doc.docDet.docs.netIssue}}</td>
+                </tr>
+                   
+            </tbody>
+        </table>
+    </div>
+</div>
+

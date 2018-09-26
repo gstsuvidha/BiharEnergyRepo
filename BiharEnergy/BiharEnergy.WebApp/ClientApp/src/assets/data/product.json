@@ -1,0 +1,53 @@
+[
+    
+        { "id": "1",
+    "name": "Book",
+    "description": "Stationary",
+    "productType": "Goods",
+    "stockInHand": "120",
+    "opStockDate": "23-05-2017",
+    "hsnSacCode": "4525",
+    "unit": "pieces",
+    "unitOthers": "string",
+    "rate": 50,
+    "isTaxIncluded": "true",
+    "isReverseChargeApplicable": "true",
+    "perReverseCharge": "false",
+    "igst": "9",
+    "cess": "2"},
+     
+    { "id": "1",
+    "name": "Pencil",
+    "description": "Stationary",
+    "productType": "Goods",
+    "stockInHand": "120",
+    "opStockDate": "23-05-2017",
+    "hsnSacCode": "4525",
+    "unit": "pieces",
+    "unitOthers": "string",
+    "rate": 50,
+    "isTaxIncluded": "true",
+    "isReverseChargeApplicable": "true",
+    "perReverseCharge": "false",
+    "igst": "9",
+    "cess": "2"},
+    {
+    "name": "Pen",
+    "description": "Stationary",
+    "productType": "Goods",
+    "stockInHand": "120",
+    "opStockDate": "23-05-2017",
+    "hsnSacCode": "4525",
+    "unit": "pieces",
+    "unitOthers": "string",
+    "rate": 50,
+    "isTaxIncluded": "true",
+    "isReverseChargeApplicable": "true",
+    "perReverseCharge": "false",
+    "igst": "9",
+    "cess": "2"
+  }
+    
+          
+    
+]

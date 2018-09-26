@@ -1,0 +1,27 @@
+{
+    "gstin":"10AAOPA9343G1Z0",
+    "fp":"92018",
+    "gt":"100000",
+    "cur_gt":0,
+    "b2b":[],
+    "b2cl":[],
+    "b2cs":[],
+    "exp":[],
+    "at":[],
+    "cdnr":[],
+    "cdnur":[],
+    "hsn":[
+      {
+        "data": {
+          "hsnSacCode": "S56",
+          "unit": 6,
+          "quantity": 8,
+          "taxableValue": 1000,
+          "invoiceValue": 3000,
+          "taxAmount": 5000,
+          "cess": 1000
+        }
+      }
+    ]
+    
+}
